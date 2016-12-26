@@ -1,0 +1,52 @@
+<nav class="barra-superior">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li id="citizen"><a ui-sref="citizen.home">Ciudadanía</a></li>
+      <li id="institutional"><a ui-sref="institutional.home">Instituciones de gobierno</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="navbar navbar-default">
+  <div class="container">
+    <div class="banda-bicolor">
+      <span class="azul"></span>
+      <span class="rojo"></span>
+    </div>
+
+    <div class="navbar-header">
+      <button  class="collapsed navbar-toggle" data-target="#bs-navbar" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" style="padding:0!important" ng-click="$ctrl.goHome()">
+        <img class="img-responsive" src="images/logo-header.png" style="height: 73px; padding-right: 4px; margin-top: 10px; margin-left: -2px">
+      </a>
+    </div>
+
+    <nav class="collapse navbar-collapse" id="bs-navbar">
+      <ul class="nav navbar-nav">
+        <li ng-hide="$ctrl.hideCitizenMenu()" ui-sref-active="active"><a ui-sref="citizen.about">¿Qué es?</a></li>
+        <li ng-hide="$ctrl.hideCitizenMenu()" ui-sref-active="active"><a ui-sref="citizen.getit">¿Cómo la obtengo?</a></li>
+        <li ng-hide="$ctrl.hideCitizenMenu()"  ui-sref-active="active"><a ui-sref="citizen.tasks">¿Dónde la puedo utilizar?</a></li>
+        <li ng-hide="$ctrl.hideCitizenMenu()"  ui-sref-active="active"><a ui-sref="citizen.faqs">Preguntas Frecuentes</a></li>
+
+        <li ng-hide="$ctrl.hideInstitutionMenu()" ui-sref-active="active"><a ui-sref="institutional.how">¿Cómo funciona?</a></li>
+        <li ng-hide="$ctrl.hideInstitutionMenu()" ui-sref-active="active"><a ui-sref="institutional.request">Solicitar activación</a></li>
+        <li ng-hide="$ctrl.hideInstitutionMenu()" ui-sref-active="active"><a ui-sref="institutional.tutorial">Manual de instalación</a></li>
+
+        <li class="visible-xs visible-sm dropdown-submenu" ng-hide="$ctrl.isInstitutional()">
+          <user-button is-mobile="true" user="$ctrl.user"></user-button>
+        </li>
+      </ul>
+
+      <div class="pull-right hidden-xs hidden-sm" ng-hide="$ctrl.isInstitutional()">
+        <div class="btn-group" role="group">
+          <user-button is-mobile="false" user="$ctrl.user"></user-button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

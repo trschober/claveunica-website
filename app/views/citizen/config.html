@@ -1,0 +1,45 @@
+<section id="configurar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" ng-if="result === null">
+        <h1>Configurar mis datos</h1>
+
+        <user-form data="data"
+           on-save="modifyData(profile, fullname)">
+        </user-form>
+      </div>
+
+      <div class="col-md-12" ng-show="result === 'success'">
+        <h1 class="text-center">¡Felicitaciones, ya tienes tu Claveúnica!</h1>
+
+        <div class="alert alert-success">
+          <p class="text-center"><strong>{{ fullname }}</strong> ya cuentas con tu Claveúnica, <br>a partir de ahora podrás utilizarla en distintos servicios e instituciones <br>del Estado. Sólo debes recordar tu contraseña.</p>
+        </div>
+
+        <div ng-controller="TasksController as $ctrl">
+          <h2>Estas son algunas de la operaciones que puedes realizar con tu Claveúnica:</h2>
+
+          <div class="row"  style="display: flex; flex-wrap: wrap">
+            <div class="col-sm-4" ng-repeat="tramite in $ctrl.getTasks()" style="display: flex">
+              <div class="tarjeta" style="display: flex; flex-direction: column;width: 100%">
+                <small>{{ tramite.institution_name }}</small>
+                <h4 style="flex: 1">{{ tramite.tramite }}</h4>
+                <div>
+                  <a href="{{ tramite.enlace }}" target="_blank" class="btn btn-info pull-right">Iniciar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" ng-show="result === 'error'">
+        <h1 class="text-center">Lo sentimos, ha ocurrido un error.</h1>
+
+        <div class="alert alert-danger">
+          <p class="text-center">Ha ocurrido un error mientras activábamos tu Claveúnica. <br> <a ui-sref="citizen.activation.form">Por favor inténtalo nuevamente.</a> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

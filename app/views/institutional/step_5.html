@@ -1,0 +1,18 @@
+
+<h4>Paso 5</h4>
+<h3>Autenticar usuario</h3>
+
+<p>La respuesta obtenida en el paso anterior es un <strong>JSON</strong>, de este se requiere el parámetro llamado <strong>access token (Token de acceso)</strong>.</p>
+<p>JSON ejemplo.</p>
+
+<pre><strong>{
+    "access_token": "95104ab471534af08683aefa7d0935a3",
+    "token_type": "bearer",
+    "expires_in": 3600,
+    "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg1ZGVjMDU1MjZmNjUwZGIxYWMyYWFlMTI4NTc3NGM3In0"
+}</strong>
+</pre>
+
+<p>Hasta este paso tu aplicación está apta para decir al ciudadano si su autenticación en ClaveÚnica está correcta o no.</p>
+
+<p>El <strong><em> Paso 6</em></strong>, sirve para que tu aplicación pueda obtener información adicional sobre el ciudadano dependiendo el parámetro scope enviado.</p>

@@ -1,0 +1,80 @@
+<section id="home-institucional">
+  <div id="hero" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron">
+          <h1>Promueve el uso de Claveúnica en tu organismo</h1>
+          <p><a class="btn btn-primary btn-lg hide" href="#" role="button">Solicita material de difusión</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="up-down" ng-controller="MetricsController">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="tarjeta text-center">
+            <h3>Estado de CU</h3>
+            <div id="status" ng-class="status"></div>
+            <span ng-show="!data">Obteniendo estado...</span>
+            <div ng-switch="data.statusClaveUnica">
+              <span ng-switch-when="1">En línea</span>
+              <span ng-switch-when="2">Fuera de línea</span>
+              <span ng-switch-when="3">En mantenimiento</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8" id="metrics">
+          <div class="tarjeta">
+            <h3 class="text-center">Actualmente contamos con</h3>
+            <div class="row">
+              <div class="col-md-3 col-sm-3">
+                <span class="number">{{ data.metricas.numberUsers }}</span>
+                <span class="description">Ciudadanos activos</span>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <span class="number">{{ data.metricas.numberInstitutions }}</span>
+                <span class="description">Instituciones activas</span>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <span class="number">{{ data.metricas.numberApps }}</span>
+                <span class="description">Trámites en línea</span>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <span class="number">{{ data.metricas.numberTransactionsDay }}</span>
+                <span class="description">Transacciones diarias</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="opciones">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="tarjeta">
+            <h3><span class="glyphicon glyphicon-console"></span>Biblioteca</h3>
+            <p>Revisa nuestra biblioteca de la ClaveÚnica (Relying Party OpenID Connect) en el repositorio de Github</p>
+            <a class="btn btn-primary pull-right" href="https://github.com/e-gob" target="_blank">E-gob repositorio</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="tarjeta">
+            <h3><span class="glyphicon glyphicon-check"></span>Activa tu organismo</h3>
+            <p>Completa el formulario de solicitud de activación y pronto nos pondremos en contacto</p>
+            <a class="btn btn-primary pull-right" ui-sref="institutional.request">Envía una Solicitud</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="tarjeta">
+            <h3><span class="glyphicon glyphicon-cog"></span>Configura tu servicio</h3>
+            <p>Sigue estas instrucciones para instalar tu servicio de Claveúnica</p>
+            <a class="btn btn-primary pull-right" ui-sref="institutional.tutorial">Mira el manual de instalación</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

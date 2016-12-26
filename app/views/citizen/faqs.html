@@ -1,0 +1,32 @@
+<section id="faqs">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Preguntas Frecuentes</h1>
+        <h2>Consulta nuestras preguntas y respuestas</h2>
+
+        <div class="alert alert-danger" ng-if="error">
+          Ha ocurrido un error al cargar los datos.
+        </div>
+
+        <div ng-if="!faqs && !error">
+          Cargando preguntas frecuentes...
+        </div>
+
+        <uib-accordion>
+          <div uib-accordion-group class="panel-default" dir-paginate="faq in faqs | itemsPerPage: 10">
+            <uib-accordion-heading>
+              <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;{{ faq.pregunta }}
+            </uib-accordion-heading>
+
+            <div class="panel-collapse in" ng-bind-html="faq.respuesta"></div>
+          </div>
+        </uib-accordion>
+
+        <div class="text-center">
+          <dir-pagination-controls></dir-pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

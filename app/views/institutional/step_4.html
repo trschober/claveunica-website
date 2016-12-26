@@ -1,0 +1,41 @@
+<h4>Paso 4</h4>
+<h3>Cambiar el código de activación por Token de acceso y un Token de autorización</h3>
+
+<p>La respuesta incluye un parámetro llamado <strong>code</strong>. Este es un código de acceso único que tiene un tiempo de expiración de 5 minutos.
+  Con este codigo tu aplicación puede solicitar un <strong>Token de acceso</strong>.
+</p>
+
+<p>Para solicitar este <strong>Token de acceso</strong> debe enviar una solicitud <strong>POST via HTTPS</strong>.</p>
+<p>La <strong>URI</strong> donde debe ser enviada la solicitud POST es:</p>
+
+<code><strong><em>https://accounts.claveunica.gob.cl/openid/token/</em></strong></code>
+
+<p>Los parámetros que deben ser enviados en el cuerpo del mensaje POST son:</p>
+
+<code>
+  <ul class="clave">
+    <li><strong>client_id:</strong> Este parámetro es proporcionado por medio de una solicitud a ClaveÚnica descrita en el paso : <a href="/#/institucional/solicitud-activacion">Solicitar ClaveÚnica</a></li>
+    <li><strong>client_secret:</strong> Este parámetro es proporcionado por medio de una solicitud a ClaveÚnica descrita en el paso : <a href="/#/institucional/solicitud-activacion">Solicitar ClaveÚnica</a></li>
+    <li><strong>redirect_uri:</strong> En este parámetro debe  ir la URI de tu aplicación que interactuara con ClaveÚnica (este debe ser igual al Paso 2). Esta recibirá la respuesta por parte de ClaveÚnica</li>
+    <li><strong>grant_type:</strong> Este parámetro debe ser siempre authorization_code, esto solo indica el tipo de flujo de OpenID Connect</li>
+    <li><strong>code:</strong> En este parámetro debe ir el código de acceso obtenido en el Paso 3.</li>
+    <li><strong>state:</strong> En este parámetro debe ir el mismo Token único de sesión que fue indicado en el <strong><em>Paso 1</em></strong>.</li>
+  </ul>
+</code>
+
+<p>Para ejemplificar este paso, aquí dejaremos una URI de ejemplo con el cuerpo POST (siguiendo el ejemplo del Paso 2).</p>
+
+<code>
+<em>
+  <strong>POST /openid/token/ HTTPS/2</strong><br>
+  <strong>Host: https://www.claveunica.gob.cl</strong><br>
+  <strong>Content-Type: application/x-www-form-urlencoded</strong><br>
+
+  code=5fb3b172913448acadce6b011af1e75e
+  client_id=123&amp;
+  client_secret=456&amp;
+  redirect_uri=https://example.com/&amp;
+  grant_type=authorization_code&amp;
+  state=asdfgh
+</em>
+</code>

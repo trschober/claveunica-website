@@ -1,0 +1,76 @@
+<section id="tutorial">
+  <div class="container">
+    <h1>Manual de instalación</h1>
+    <h2>Configura ClaveÚnica en tu servicio</h2>
+    <p>Luego de que ya tienes el Cliente ID y Secret ID y nosotros tu URI de Redirección, ya estarás listo para montar tu servicio con ClaveÚnica.</p>
+    <p>El flujo soportado por ClaveÚnica es Authorization code Flow por lo que explicaremos el proceso de configuración en estos 6 pasos:</p>
+    <div class="row">
+      <div class="col-md-12 visible-xs-block visible-sm-block">
+        <form id="step-filter" class="form-inline">
+          <div class="form-group">
+            <select class="form-control"
+                ng-change="changeStep(selected)"
+                ng-model="selected"
+                ng-options="steps.indexOf(selected) as selected for selected in steps">
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 visible-xs-block visible-sm-block">
+        <ng-include src="'views/institutional/step_1.html'" ng-if="selected == 0"></ng-include>
+        <ng-include src="'views/institutional/step_2.html'" ng-if="selected == 1"></ng-include>
+        <ng-include src="'views/institutional/step_3.html'" ng-if="selected == 2"></ng-include>
+        <ng-include src="'views/institutional/step_4.html'" ng-if="selected == 3"></ng-include>
+        <ng-include src="'views/institutional/step_5.html'" ng-if="selected == 4"></ng-include>
+        <ng-include src="'views/institutional/step_6.html'" ng-if="selected == 5"></ng-include>
+      </div>
+    </div>
+
+    <div class="hidden-xs">
+      <uib-tabset>
+        <div class="col-md-2 hidden-sm hidden-xs nopadding">
+          <uib-tab>
+            <uib-tab-heading><strong>Paso 1</strong> <br>Crear Token de estado anti-falsificación</uib-tab-heading>
+            <ng-include src="'views/institutional/step_1.html'"></ng-include>
+          </uib-tab>
+        </div>
+        <div class="col-md-2 hidden-sm hidden-xs nopadding">
+          <uib-tab>
+            <uib-tab-heading><strong>Paso 2</strong> <br> Enviar una solicitud de autenticación al servicio de ClaveÚnica</uib-tab-heading>
+            <ng-include src="'views/institutional/step_2.html'"></ng-include>
+          </uib-tab>
+        </div>
+
+          <div class="col-md-2 hidden-sm hidden-xs nopadding">
+          <uib-tab>
+            <uib-tab-heading><strong>Paso 3</strong><br>Confirmar el Token de estado de anti-falsificación</uib-tab-heading>
+            <ng-include src="'views/institutional/step_3.html'"></ng-include>
+          </uib-tab>
+        </div>
+
+          <div class="col-md-2 hidden-sm hidden-xs nopadding">
+          <uib-tab>
+            <uib-tab-heading><strong>Paso 4</strong><br>Cambiar el código de acceso por un Token de Acceso y un Token de autorización</uib-tab-heading>
+            <ng-include src="'views/institutional/step_4.html'"></ng-include>
+          </uib-tab>
+        </div>
+
+          <div class="col-md-2 hidden-sm hidden-xs nopadding">
+          <uib-tab>
+            <uib-tab-heading><strong>Paso 5</strong> <br>Autenticar Usuario</uib-tab-heading>
+            <ng-include src="'views/institutional/step_5.html'"></ng-include>
+          </uib-tab>
+        </div>
+        <div class="col-md-2 hidden-sm hidden-xs nopadding">
+          <uib-tab>
+            <uib-tab-heading><strong>Paso 6</strong> <br>Obtener información de ciudadano por medio del Token de autorización</uib-tab-heading>
+            <ng-include src="'views/institutional/step_6.html'"></ng-include>
+          </uib-tab>
+        </div>
+      </uib-tabset>
+    </div>
+  </div>
+</section>

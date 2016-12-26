@@ -1,0 +1,68 @@
+<main id="oficinas">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>¿Dónde puedo obtener mi Claveúnica?</h1>
+        <h2>Ingresa una región y comuna y te diremos donde puedes ir </h2>
+      </div>
+    </div>
+  </div>
+  <div class="opacidad">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form id="office-filter" class="form-inline">
+            <div class="form-group">
+              <button class="form-control" ng-click="getNearOffices()">Oficinas cercanas a mi ubicación actual <i class="fa fa-location-arrow" aria-hidden="true"></i></button>
+            </div>
+            <div class="form-group">
+              <select class="form-control"
+                  ng-model="region"
+                  ng-disabled="regions.length == 0"
+                  ng-options="region as region.nombre for region in regions | orderBy:'index'"
+                  ng-change="changeRegion(region)">
+                <option value="" disabled selected>Selecciona una región</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select class="form-control"
+                      ng-model="city"
+                      ng-disabled="cities.length == 0"
+                      ng-options="city as city.nombre for city in cities | orderBy:'nombre'"
+                      ng-change="getCityOffices(city)">
+                <option value="" disabled selected>Selecciona una comuna</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container clearfix" style="margin-bottom: 15px">
+    <div class="row">
+
+      <div class="col-md-6">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' control="control">
+          <ui-gmap-marker ng-repeat="office in offices" coords="office.coordinates" idKey="office.$$hashKey">
+            <ui-gmap-window>
+              <p>{{ office.institution_name}} <br> {{ office.direccion }}</p>
+            </ui-gmap-window>
+          </ui-gmap-marker>
+        </ui-gmap-google-map>
+      </div>
+
+      <div class="col-md-6 scroll-list">
+        <div class="oficinas hide office-loading-spinner text-center">
+          <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" class="">
+        </div>
+        <div class="oficinas" ng-repeat="office in offices" ng-click="centerMap(office)">
+          <p><strong>{{ office.institution_name }}</strong></p>
+          <p><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i> {{ office.direccion }}</p>
+          <p ng-show="office.horario.length"><i class="glyphicon glyphicon-time" aria-hidden="true"></i> {{ office.horario }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>

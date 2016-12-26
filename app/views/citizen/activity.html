@@ -1,0 +1,32 @@
+<section id="last-activity">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">Últimos movimientos</h1>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Operación</th>
+              <th>Institución</th>
+              <th width="10%">Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr dir-paginate="activity in activities | itemsPerPage: 10">
+              <td>{{ activity.nombreApp }}</td>
+              <td>{{ activity.institucion }}</td>
+              <td><span style="white-space: nowrap">{{ activity.fecha | date: 'dd-MM-yyyy HH:mm:ss' }}</span></td>
+            </tr>
+            <tr ng-show="!activities.length">
+              <td colspan="3" class="text-center"><h3>Cargando última actividad...</h3></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <nav class="text-center">
+          <dir-pagination-controls></dir-pagination-controls>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>

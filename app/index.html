@@ -1,0 +1,123 @@
+<!doctype html>
+<html ng-app="claveunica">
+<head>
+    <meta charset="utf-8">
+    <title state-title pattern="%s | Claveúnica"></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <meta name="auth-endpoint" content="https://accounts.claveunica.gob.cl/openid/authorize">
+    <meta name="api-endpoint" content="https://api.claveunica.gob.cl/api/v1" />
+
+    <meta name="recaptcha-key" content="6LfbZg0UAAAAAOWpXLNcLsXhUfNpu-uDPzim_72N" />
+    <meta name="gmaps-key" content="AIzaSyDJCJ2OTFunxi4w9K4uk4TDdWyEHSW-ca4" />
+
+    <base href="/">
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+    <link rel="stylesheet" href="bower_components/intl-tel-input/build/css/intlTelInput.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/gobstrap.min.css">
+    <link rel="stylesheet" href="styles/gobstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyASXsXMcQ6O-nMCpW0qkqn_Xh-F8mrk7Bc'></script>
+</head>
+<body>
+    <site-header></site-header>
+    <ui-view>Cargando Claveúnica...</ui-view>
+    <site-footer></site-footer>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
+    <script src="bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-promise-buttons/dist/angular-promise-buttons.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-bootstrap-show-errors/src/showErrors.js"></script>
+    <script src="bower_components/angular-base64/angular-base64.js"></script>
+    <script src="bower_components/ng-page-title/dist/ng-page-title.js"></script>
+    <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/markerclustererplus/src/markerclusterer.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-infobox/dist/infobox.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.js"></script>
+    <script src="bower_components/js-rich-marker/src/richmarker.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="bower_components/satellizer/dist/satellizer.js"></script>
+    <script src="bower_components/ng-elif/src/elif.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/build/nv.d3.js"></script>
+    <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+    <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
+    <script src="bower_components/intl-tel-input/build/js/intlTelInput.js"></script>
+    <script src="bower_components/ng-intl-tel-input/dist/ng-intl-tel-input.js"></script>
+    <script src="bower_components/angular-deferred-bootstrap/angular-deferred-bootstrap.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/httpinterceptor.js"></script>
+    <script src="scripts/services/ruthelper.js"></script>
+    <script src="scripts/services/storage.js"></script>
+    <script src="scripts/services/session.js"></script>
+    <script src="scripts/services/geo.js"></script>
+    <script src="scripts/services/apiclient.js"></script>
+    <script src="scripts/components/dashboardchart.js"></script>
+    <script src="scripts/components/sitefooter.js"></script>
+    <script src="scripts/components/siteheader.js"></script>
+    <script src="scripts/components/userform.js"></script>
+    <script src="scripts/components/userbutton.js"></script>
+    <script src="scripts/controllers/citizen/activatecontroller.js"></script>
+    <script src="scripts/controllers/citizen/activitycontroller.js"></script>
+    <script src="scripts/controllers/citizen/configcontroller.js"></script>
+    <script src="scripts/controllers/citizen/faqscontroller.js"></script>
+    <script src="scripts/controllers/citizen/officescontroller.js"></script>
+    <script src="scripts/controllers/citizen/profilecontroller.js"></script>
+    <script src="scripts/controllers/citizen/recoverycontroller.js"></script>
+    <script src="scripts/controllers/citizen/taskscontroller.js"></script>
+    <script src="scripts/controllers/institutional/metricscontroller.js"></script>
+    <script src="scripts/controllers/institutional/requestcontroller.js"></script>
+    <script src="scripts/controllers/institutional/tutorialcontroller.js"></script>
+    <script src="scripts/decorators/httpdecorator.js"></script>
+    <script src="scripts/directives/compareto.js"></script>
+    <script src="scripts/directives/countrycode.js"></script>
+    <script src="scripts/directives/strongpass.js"></script>
+    <script src="scripts/directives/validaterut.js"></script>
+    <script src="scripts/routing/citizen.js"></script>
+    <script src="scripts/routing/institutional.js"></script>
+    <!-- endbuild -->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-88247730-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

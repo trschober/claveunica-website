@@ -1,0 +1,6 @@
+<h4>Paso 1</h4>
+<h3>Crear Token de estado anti-falsificación</h3>
+<p>Debes proteger la seguridad de tus ciudadanos mediante la prevención de los ataques de <a href="https://www.owasp.org/index.php/CSRF"><strong>falsificación de petición</strong></a>. El primer paso es crear un token de sesión único, que mantiene el estado entre tu aplicación y el ciudadano.</p>
+<p>Posteriormente debes hacer coincidir este token de sesión único con la respuesta de autenticación devuelto por el servicio de ClaveÚnica. Así, tanto ClaveÚnica como tu servicio, pueden asegurar que el usuario está haciendo la solicitud y no se trata de un atacante malicioso. Este tipo de ataque se denomina por  <a href="https://www.owasp.org/index.php/CSRF">Cross-Site Request Forgery</a> (CSRF).</p>
+<p>Una buena opción para un identificador de estado es una cadena de 30 o más caracteres construido con un <strong>generador de números aleatorios o generar un hash por medio de un secreto.</strong></p>
+

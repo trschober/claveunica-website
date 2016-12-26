@@ -1,0 +1,20 @@
+<h2 class="text-center">{{ $ctrl.title }}</h2>
+<h3 class="text-center">{{ $ctrl.filters[$ctrl.selected] }} </h3>
+
+<div class="chart-filters text-right">
+  <form class="form-inline">
+    <div class="form-group">
+      <label>Ver desde:
+        <select class="form-control"
+          ng-model="$ctrl.selected"
+          ng-change="$ctrl.changeFilter($ctrl.selected)"
+          ng-options="$ctrl.filters.indexOf(selected) as selected for selected in $ctrl.filters">
+        </select>
+      </label>
+    </div>
+  </form>
+</div>
+
+<div class="chart-display" style="background: #ffffff">
+  <nvd3 options="$ctrl.options" data="$ctrl.data"></nvd3>
+</div>

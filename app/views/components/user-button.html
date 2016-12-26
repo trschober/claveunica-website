@@ -1,0 +1,20 @@
+<button type="button" class="btn btn-primary dropdown-toggle boton-header"
+        ng-class="$ctrl.isMobile ? 'visible-xs visible-sm' : ''" data-toggle="dropdown">
+  <span ng-hide="$ctrl.loggedIn"><strong>mi</strong> claveúnica</span>
+  <span>{{ $ctrl.fullName }}</span>
+  <span class="caret"></span>
+</button>
+
+<ul class="dropdown-menu" ng-hide="$ctrl.loggedIn">
+  <li><a ui-sref="citizen.activation.form">Activa tu claveúnica</a></li>
+  <li><a ui-sref="citizen.recovery.form">Recupera tu contraseña</a></li>
+  <li><a ng-click="$ctrl.login('citizen.profile')" style="cursor: pointer">Actualiza tus datos</a></li>
+  <li><a ng-click="$ctrl.login('citizen.activity')" style="cursor: pointer">Revisa tu última actividad</a></li>
+</ul>
+
+<ul class="dropdown-menu" ng-show="$ctrl.loggedIn">
+  <li><a ui-sref="citizen.profile">Actualizar mis datos</a></li>
+  <li><a ui-sref="citizen.activity">Últimos movimientos</a></li>
+  <li ng-if="institution"><a ui-sref="institutional.charts">Estadísticas institucionales</a></li>
+  <li><a ng-click="$ctrl.logout()" style="cursor: pointer">Cerrar sesión</a></li>
+</ul>

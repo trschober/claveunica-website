@@ -1,0 +1,187 @@
+<section id="request">
+  <div class="container">
+    <h1>Solicitar activación</h1>
+    <div class="row">
+      <div class="col-md-8 ">
+        <form name="form" class="clearfix" novalidate>
+          <h3>¿Quién solicita?</h3>
+          <div class="form-group" show-errors>
+            <input name="institution" type="text" class="form-control" placeholder="Institución o empresa*" ng-model="request.institution" required>
+            <p ng-messages="form.institution.$error" class="text-danger" ng-if="form.institution.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+            </p>
+          </div>
+
+          <h3>Contacto técnico</h3>
+          <div class="form-group" show-errors>
+            <input name="nct" type="text" class="form-control" placeholder="Nombres y apellidos*" ng-model="request.nameContactTec" required>
+            <p ng-messages="form.nct.$error" class="text-danger" ng-if="form.nct.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+            </p>
+          </div>
+
+          <div class="form-group" show-errors>
+            <input name="ect" type="email" class="form-control" placeholder="Correo electrónico*" ng-model="request.emailContactTec" required>
+            <p ng-messages="form.ect.$error" class="text-danger" ng-if="form.ect.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+              <span ng-message="email">El correo electrónico no es válido</span>
+            </p>
+          </div>
+
+          <div class="form-group" show-errors>
+            <input name="pct" type="tel" class="form-control" placeholder="Teléfono*" ng-model="request.phoneContactTec" ng-pattern="regex" required>
+            <p ng-messages="form.pct.$error" class="text-danger" ng-if="form.pct.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+              <span ng-message="pattern">El número telefónico no es válido</span>
+            </p>
+          </div>
+
+          <h3>Contacto administrativo</h3>
+          <div class="form-group" show-errors>
+            <input name="nca" type="text" class="form-control" placeholder="Nombres y apellidos*" ng-model="request.nameContactAdm" required>
+            <p ng-messages="form.nca.$error" class="text-danger" ng-if="form.nca.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+            </p>
+          </div>
+
+          <div class="form-group" show-errors>
+            <input name="eca" type="email" class="form-control" placeholder="Correo electrónico*" ng-model="request.emailContactAdm" required>
+            <p ng-messages="form.eca.$error" class="text-danger" ng-if="form.eca.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+              <span ng-message="email">El correo electrónico no es válido</span>
+            </p>
+          </div>
+
+          <div class="form-group" show-errors>
+            <input name="pca" type="tel" class="form-control" placeholder="Teléfono*" ng-model="request.phoneContactAdm" ng-pattern="regex" required>
+            <p ng-messages="form.pca.$error" class="text-danger" ng-if="form.pca.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+              <span ng-message="pattern">El número telefónico no es válido</span>
+            </p>
+          </div>
+
+          <h3>Descripción del servicio a integrar</h3>
+          <div class="form-group" show-errors>
+            <textarea name="desc" class="form-control" rows="3" ng-model="request.descriptionApp" required></textarea>
+            <p ng-messages="form.desc.$error" class="text-danger" ng-if="form.desc.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+            </p>
+          </div>
+
+          <div class="form-group" show-errors>
+            <input name="name" class="form-control" ng-model="request.nameApp" required placeholder="Nombre de la aplicación*">
+            <p ng-messages="form.name.$error" class="text-danger" ng-if="form.name.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+            </p>
+          </div>
+
+          <div class="form-group" show-errors>
+            <input name="proc" type="url" class="form-control" placeholder="(Opcional) Ejemplo: http://plagas.minagri.cl/tramites" ng-model="request.procedureUrl">
+            <p>URL de la página donde se dispondrá el botón de Claveúnica para realizar el trámite (opcional)</p>
+            <p ng-messages="form.proc.$error" class="text-danger" ng-if="form.proc.$touched">
+              <span ng-message="url">La URL no es válida</span>
+            </p>
+          </div>
+
+          <h3>URI's de redirección</h3>
+          <div class="form-group" show-errors>
+            <input name="prod" type="url" class="form-control" placeholder="Producción (Ejemplo: https://plagas.minagri.gob.cl/callback/claveunica)" ng-model="request.urlProd">
+            <p ng-messages="form.prod.$error" class="text-danger" ng-if="form.prod.$touched">
+              <span ng-message="url">La URL no es válida</span>
+            </p>
+          </div>
+
+          <div class="form-group" show-errors>
+            <input name="qa" type="url" class="form-control" placeholder="Test/QA: * (Ejemplo: https://testing-plagas.minagri.gob.cl/callback/claveunica)*" ng-model="request.urlSandbox" required>
+            <p ng-messages="form.qa.$error" class="text-danger" ng-if="form.qa.$touched">
+              <span ng-message="required">Este campo es obligatorio</span>
+              <span ng-message="url">La URL no es válida</span>
+            </p>
+          </div>
+
+          <div class="form-group">
+            <h4>Condiciones de uso</h4>
+            <p>El servicio de ClaveÚnica sólo se debe utilizar como mecanismo de validación de identidad de los ciudadanos para el acceso a servicios puestos a su disposición.</p>
+            <p>Cumplir con las obligaciones de protección a la vida privada, en especial con las disposiciones contenidas en la Ley N° 19.628 sobre Protección de la Vida Privada.</p>
+            <p>Utilizar los dispositivos que sean necesarios para que la información que ingresan y/o que acceden las personas en los sistemas de tramitación electrónica se realice de forma segura.</p>
+          </div>
+
+          <div class="form-group checkbox">
+            <label>
+              <input name="confirm" type="checkbox" ng-model="confirm" required> Acepto las condiciones de uso*
+            </label>
+            <div ng-messages="form.confirm.$error" ng-if="form.confirm.$dirty" class="text-danger">
+              <p ng-message="required">Debes aceptar las condiciones de uso</p>
+            </div>
+          </div>
+        </form>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div ng-if="error" class="alert alert-danger">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+
+        <button promise-btn class="btn btn-primary pull-right" ng-disabled="form.$invalid" ng-click="submit(form)">Activar</button>
+      </div>
+
+      <div class="col-md-4 hidden-xs hidden-sm">
+        <ng-include src="'views/institutional/sidebar.html'"></ng-include>
+      </div>
+
+      <script type="text/ng-template" id="credentialsModal.html">
+        <div class="modal-header">
+          <h3 class="modal-title">Credenciales de aplicación</h3>
+        </div>
+
+        <div class="modal-body">
+          <div ng-show="data.credentials.appProd.client_id && data.credentials.appProd.client_secret">
+            <h4>Credenciales producción</h4>
+
+            <table class="table table-condensed borderless">
+              <tbody>
+              <tr><th>Client ID:</th><td><pre>{{ data.credentials.appProd.client_id }}</pre></td></tr>
+              <tr><th>Client secret:</th><td><pre>{{ data.credentials.appProd.client_secret }}</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div ng-show="data.credentials.appSandbox.client_id && data.credentials.appSandbox.client_secret">
+            <h4>Credenciales sandbox</h4>
+            <table class="table table-condensed borderless">
+              <tbody>
+              <tr><th>Client ID:</th><td><pre>{{ data.credentials.appSandbox.client_id }}</pre></td></tr>
+              <tr><th>Client secret:</th><td><pre>{{ data.credentials.appSandbox.client_secret }}</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Tickets de soporte</h4>
+          <p>Puede solicitar soporte en <a href="https://soporte.digital.gob.cl/open.php?topicId=12" target="_blank">https://soporte.digital.gob.cl/open.php?topicId=12</a> indicando alguno de los siguientes identificadores en los detalles del problema:</p>
+          <table class="table table-condensed borderless">
+            <tbody>
+            <tr ng-show="data.ticketsId.appProduction">
+              <th>Producción</th>
+              <td><pre>{{ data.ticketsId.appProduction }}</pre></td>
+            </tr>
+
+            <tr ng-show="data.ticketsId.appSandbox">
+              <th>Sandbox</th>
+              <td><pre>{{ data.ticketsId.appSandbox }}</pre></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-footer">
+          <a href="{{ downloadLink }}" class="btn btn-sm btn-success pull-left">
+            Descargar <i class="glyphicon glyphicon-download-alt"></i>
+          </a>
+          <button class="btn btn-sm btn-primary pull-right" ng-click="dismissModal()">Aceptar</button>
+        </div>
+      </script>
+    </div>
+  </div>
+</section>

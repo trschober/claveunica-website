@@ -1,0 +1,158 @@
+<h3 ng-show="!$ctrl.fullName" class="text-center">
+  Cargando datos...
+</h3>
+
+<div ng-show="$ctrl.fullName">
+  <h2>Hola, {{ $ctrl.getFullName($ctrl.data) }}</h2>
+
+  <div class="datos">
+    <form name="form" novalidate>
+      <div class="contraseña">
+        <h4>Crea una contraseña para tu claveúnica</h4>
+
+        <div class="form-group" show-errors>
+          <div class="input-group">
+            <input ng-model="$ctrl.password"
+                   ng-model-options="{ allowInvalid: $ctrl.allowInvalid }"
+                   strong-pass
+                   type="{{ $ctrl.showPassword[0] ? 'text' : 'password' }}"
+                   name="pwd"
+                   class="form-control"
+                   placeholder="Ingresa tu contraseña *" required>
+
+            <span class="input-group-btn">
+              <button class="btn btn-default"
+                      type="button"
+                      ng-click="$ctrl.togglePassword(0)">
+                <span class="glyphicon glyphicon-eye-open"></span>
+              </button>
+            </span>
+          </div>
+          <small>Debe contener al menos 8 caracteres y debes combinar letras mayúsculas y minúsculas, números y/o símbolos.</small>
+
+          <p ng-messages="form.pwd.$error" class="text-danger" ng-if="form.pwd.$dirty">
+            <span ng-message="invalidchar">La contraseña contiene símbolos no permitidos (<span ng-bind="$ctrl.pswdInvalidChars()"></span>)</span>
+            <span ng-message="required">Este campo es obligatorio</span>
+            <span ng-message="strongPassword">La contraseña es inválida</span>
+          </p>
+        </div>
+
+        <div class="form-group" show-errors>
+          <div class="input-group">
+            <input ng-model="$ctrl.password_confirm"
+                   ng-paste="$event.preventDefault()"
+                   compare-to="$ctrl.password"
+                   name="pwdconfirm"
+                   type="{{ $ctrl.showPassword[1] ? 'text' : 'password' }}"
+                   class="form-control"
+                   placeholder="Reingresa tu contraseña *">
+
+            <span class="input-group-btn">
+              <button class="btn btn-default"
+                      ng-click="$ctrl.togglePassword(1)">
+                <span class="glyphicon glyphicon-eye-open"></span>
+              </button>
+            </span>
+          </div>
+          <small>Por favor repite tu contraseña para evitar errores.</small>
+
+          <p ng-messages="form.pwdconfirm.$error" class="text-danger" ng-if="form.pwdconfirm.$dirty">
+            <span ng-message="required">Este campo es obligatorio</span>
+            <span ng-message="compareTo">Las contraseñas no coinciden</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="correo">
+        <h4>Indica tu correo electrónico</h4>
+        <p>El correo electrónico que indiques será usado para recuperar tu contraseña y para enviarte información relevante.</p>
+
+        <div class="form-group" show-errors>
+          <input ng-model="$ctrl.email" type="email" name="email" class="form-control" placeholder="Ingresa tu correo electrónico *" required>
+          <small>Ejemplo: correo@chile.cl</small>
+
+          <p ng-messages="form.email.$error" class="text-danger" ng-if="!form.email.$valid">
+            <span ng-message="required">Este campo es obligatorio</span>
+            <span ng-message="email">El correo electrónico no es válido</span>
+          </p>
+        </div>
+
+        <div class="form-group" show-errors>
+          <input ng-model="$ctrl.email_confirm" ng-paste="$event.preventDefault()" compare-to="$ctrl.email" type="email" name="email_confirm" class="form-control" placeholder="Vuelve a ingresar tu correo electrónico *" required>
+          <small>Por favor repite tu correo electrónico para evitar errores.</small>
+
+          <p ng-messages="form.email_confirm.$error" class="text-danger" ng-if="!form.email_confirm.$valid">
+            <span ng-message="required">Este campo es obligatorio</span>
+            <span ng-message="compareTo">Los correos electrónicos no coinciden</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="telefono">
+        <h4>Número de celular</h4>
+
+        <p>El número de celular que indiques también podrá ser usado para recuperar tu contraseña y para enviarte información relevante.</p>
+        <div class="input-group" show-errors>
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+            <span class="form-control"
+                  country-code-select
+                  ng-model="$ctrl.code">
+            </span>
+            </div>
+
+            <div class="col-sm-8 col-md-8 col-lg-8">
+              <input ng-model="$ctrl.phone"
+                 ng-pattern="/^[0-9]{4,14}$/"
+                 type="tel"
+                 name="tel"
+                 class="form-control"
+                 placeholder="Ingresa tu número celular">
+            </div>
+          </div>
+        </div>
+        <small>Ejemplo: +56 9 74020008</small>
+
+        <div class="input-group" show-errors>
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+            <span class="form-control"
+                  country-code-select
+                  name="confirm_code"
+                  compare-to="$ctrl.code"
+                  ng-model="$ctrl.code_confirm">
+            </span>
+            </div>
+            <div class="col-sm-8 col-md-8 col-lg-8">
+              <input ng-model="$ctrl.phone_confirm"
+                     compare-to="$ctrl.phone"
+                     ng-paste="$event.preventDefault()"
+                     type="tel"
+                     name="tel_confirm"
+                     class="form-control"
+                     placeholder="Reingresa tu número celular">
+            </div>
+          </div>
+        </div>
+
+        <small>Por favor repite tu número celular para evitar errores.</small>
+
+        <p ng-messages="form.tel_confirm.$error" class="text-danger" ng-if="!form.tel_confirm.$valid">
+          <span ng-message="compareTo">Los teléfonos no coinciden</span>
+        </p>
+
+        <p ng-messages="form.confirm_code.$error" class="text-danger" ng-if="!form.confirm_code.$valid">
+          <span ng-message="compareTo">Los códigos de país no coinciden</span>
+        </p>
+
+        <div class="text-center">
+          <button promise-btn
+                  class="btn btn-primary"
+                  ng-click="$ctrl.save()"
+                  ng-disabled="!form.$valid">Modificar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

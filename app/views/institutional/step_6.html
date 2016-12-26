@@ -1,0 +1,31 @@
+<h4>Paso 6</h4>
+<h3>Obtener información de ciudadano por medio del Token de autorización</h3>
+<p>En este paso te explicaremos como puedes obtener información del ciudadano dependiendo el <strong>scope</strong>.</p>
+<p><strong><em>Nota: Cabe mencionar que no todos pueden enviar cualquier scope, este es acordado en la solicitud de ClaveÚnica.</em></strong></p>
+<p>En el <strong><em>Paso 5</em></strong> el ciudadano ya está autenticado, pero un modulo de tu aplicación puede obtener información adicional sobre los ciudadanos, como por ejemplo Nombre y/o RUN.</p>
+<p>Para lograr esto, se requiere enviar una solicitud POST con el Token de acceso obtenido anteriormente.</p>
+<p>La solicitud POST se envía de la siguiente forma:</p>
+<code><strong><em>POST /openid/userinfo/ HTTPS/1.1<br>
+Host: https://www.claveunica.gob.cl<br>
+Authorization: Bearer [ACCESS_TOKEN]</em></strong></code>
+<p>Donde Authorization: es una cabecera.</p>
+<p>Con esta solicitud tu aplicacion recibirá un JSON de este estilo (dependiendo qué scope tenga asignada)</p>
+<code><strong>
+	{
+    "sub": "2",
+    "RUN": {
+        "numero": 55555555,
+        "DV": "5",
+        "tipo": "RUN"
+    },
+    "name": {
+        "nombres": ['Maria', 'Carmen', 'De', 'Los', 'Angeles'],
+        "apellidos": ['Del', ' Rio', 'Gonzalez']
+    }
+}
+</strong></code>
+<p><strong>Recomendación de seguridad para este paso:</strong></p>
+<p>Normalmente, es fundamental validar los <strong>Token</strong> , aunque en este caso particular, esto no es algo necesario debido a que se está comunicando con ClaveÚnica por medio de un canal <strong>HTTPS</strong>. Además, se realizo un intercambio de credenciales mediante el <strong>Cliend ID</strong>, <strong>Client Secret</strong> y un <strong>Token de estado</strong>, por lo que tu aplicación debe tener la certeza de que el ciudadano está correctamente autenticado.</p>
+<p>En caso de que tu aplicación intercambie el Token de autorización a otros componentes fuera del flujo de tu aplicación, es recomendable que este componente valide dicho Token.
+  La mayor parte de las API combinan la validación con el trabajo de descifrar el <strong>base64</strong> y parsear el <strong>JSON</strong>, por lo que probablemente terminarás por validar el token.
+</p>

@@ -1,0 +1,29 @@
+<section id="configurar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" ng-if="result === null">
+        <h1>Actualizar mis datos</h1>
+
+        <user-form data="data"
+           on-save="modifyData(profile, fullname)">
+        </user-form>
+      </div>
+
+      <div class="col-md-12" ng-show="result === 'success'">
+        <h1 class="text-center">¡Tus datos han sido actualizados correctamente!</h1>
+
+        <div class="alert alert-success">
+          <p class="text-center"><strong>{{ fullname }}</strong> tus datos han sido actualizados correctamente. <br> <a ui-sref="citizen.profile" ui-sref-opts="{ reload: true }">Volver a edición</a></p>
+        </div>
+      </div>
+
+      <div class="col-md-12" ng-show="result === 'error'">
+        <h1 class="text-center">Lo sentimos, ha ocurrido un error.</h1>
+
+        <div class="alert alert-danger">
+          <p class="text-center">Ha ocurrido un error mientras guardábamos tus datos. <br> <a ui-sref="citizen.profile" ui-sref-opts="{ reload: true }">Por favor inténtalo nuevamente.</a> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

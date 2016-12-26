@@ -1,0 +1,49 @@
+<section id="task-filter">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>¿Dónde puedo utilizar mi Claveúnica?</h1>
+        <h2>Aquí puedes encontrar operaciones disponibles con tu Claveúnica</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row opacidad">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form-inline">
+            <div class="form-group">
+              <select class="form-control"
+                ng-model="service"
+                ng-options="service as service.nombre for service in services"
+                ng-change="ctrl.changeService(service)" id="filter-by">
+                <option value="" selected>Todas las instituciones</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="tasks">
+  <div class="container" ng-init="getTasks()">
+    <h5 class="text-center" ng-hide="tasks.length">Cargando operaciones disponibles...</h5>
+    <div class="row" style="display: flex; flex-wrap: wrap">
+      <div class="col-sm-4" dir-paginate="tramite in tasks | itemsPerPage: 12" style="display: flex">
+        <div class="tarjeta" style="width: 100%">
+          <small>{{ tramite.institution_name }}</small>
+          <h4 style="flex: 1">{{ tramite.tramite }}</h4>
+          <div>
+            <a href="{{ tramite.enlace }}" ng-disabled="!tramite.enlace.length" target="_blank" class="btn btn-primary pull-right">Iniciar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center clearfix">
+      <dir-pagination-controls></dir-pagination-controls>
+    </div>
+
+  </div>
+</section>

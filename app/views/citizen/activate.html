@@ -1,0 +1,111 @@
+<section id="activar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Activar mi Claveúnica</h1>
+        <h2>Para tener una Claveúnica debes solicitar un código de activación.</h2>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <form name="form" class="caja" novalidate>
+          <h4>Ingresa tu RUN y código de activación</h4>
+
+          <div class="form-group" show-errors>
+            <input ng-model="user.numero" name="run" class="form-control" placeholder="RUN" required validate-rut>
+            <small>Ejemplo: 11.111.111-1</small>
+            <p ng-messages="form.run.$error" ng-if="form.run.$touched" class="text-danger">
+              <span ng-message="required">Debes completar esta información</span>
+              <span ng-message="validateRut">El RUN no es válido</span>
+            </p>
+          </div>
+
+          <div class="form-group" show-errors>
+            <input ng-model="user.code_activation" name="code" class="form-control" placeholder="Código de activación" required>
+            <p ng-messages="form.code.$error" ng-if="form.code.$touched" class="text-danger">
+              <span ng-message="required">Debes completar esta información</span>
+            </p>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input ng-model="confirm" type="checkbox" name="confirm" required>
+              Acepto los <a ui-sref="tos" target="_blank" data-toggle="modal" data-target="#myModal"> Términos y condiciones de uso</a>
+            </label>
+            <p ng-messages="form.confirm.$error" ng-if="form.confirm.$dirty" class="text-danger">
+              <span ng-message="required">Debes aceptar las condiciones de uso</span>
+            </p>
+          </div>
+
+          <p ng-if="apiError" class="alert alert-danger">{{ message }}</p>
+
+          <div class="centrado">
+            <button promise-btn class="btn btn-primary" ng-disabled="!confirm || form.$invalid" ng-click="activate(user)">Continuar</button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <h4>¿Qué es el código de activación?</h4>
+        <p>Puedes solicitar tu código de activación en las oficinas del Registro Civil o en los ISP.<br/>
+          Este código, permitirá activar tu Claveúnica en nuestro sitio Web.</p>
+          <div class="tarjeta">
+            <p class="text-center"><strong>Servicio de Registro Civil e Identificación</strong></p>
+            <p class="pull-right"><strong>Nro. Atención: 123456</strong></p>
+            <p class="text-center bajo"><strong>Comprobante</strong></p>
+            <p class="text-center"><strong>CÓDIGO DE ACTIVACIÓN</strong></p>
+            <p class="text-center">ABCDEF</p>
+            <p class="small">Para activar tu Clave Única, ingrese a nuestro sitio <strong>www.claveunica.cl</strong> y haz clic en <strong>ACTIVAR CLAVE ÚNICA</strong></p>
+            <p class="small">Este código permite crear su Clave Única para efectuar trámites en línea.</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <h1>TÉRMINOS Y CONDICIONES DE CLAVEÚNICA.</h1>
+        <p><strong>I.  BIENVENIDA.</strong></p>
+        <p>Muchas gracias por visitar nuestro sitio web y hacer uso de ClaveÚnica.</p>
+        <p>La presente página contiene información acerca de los Términos y Condiciones de uso bajo los que se rige esta plataforma. Es muy importante que se tome todo el tiempo que sea necesario para leer atentamente el contenido de estos términos y condiciones puesto que usted luego se regirá por los términos aquí establecidos para que haga un uso informado de Claveúnica.</p>
+        <p><strong>II.   ACEPTACIÓN DE LOS TÉRMINOS Y CONDICIONES DE CLAVEÚNICA.</strong></p>
+        <p>Para activar la Claveúnica se requerirá que seleccione la casilla “Acepto los términos y condiciones de uso” en la página de activación. Usted podrá proseguir el proceso en línea únicamente si acepta los términos y condiciones.</p>
+        <p>En caso de que usted no esté de acuerdo con tales términos y políticas, usted no puede utilizar este medio. </p>
+        <p><strong>III.  SOBRE CLAVEÚNICA. </strong></p>
+        <p><strong>1.</strong>  ¿Qué es la autenticación única y para qué servirá?</p>
+        <p>Este sistema permitirá a los ciudadanos acceder con una contraseña única a los servicios en línea de diversas instituciones. </p>
+        <p><strong>2.</strong>   ¿Cómo se obtiene la Claveúnica? </p>
+        Todos los personas usuarias del Registro Civil mayores de 14 años pueden obtener esta clave. Para obtener la contraseña, es necesario realizar tres simples pasos:</p>
+        <p>(a) Dirigirse al Servicio de Registro Civil e Identificación o cualquiera de los sitios habilitados para la entrega de Claveúnica con el carnet de identidad, donde le harán entrega de un comprobante correspondiente al “Código de Activación de Cuenta en Oficina Internet”.</p>
+        <p>(b) Posteriormente, ingresar al sitio web https://claveunica.gob.cl/activar o al link indicado en el correo electrónico que se envía al momento de la solicitud, donde se le solicitará digitar el número de su Carnet de Identidad (RUN) y el “Código de Activación” disponible en el comprobante. </p>
+        <p>(c) Finalmente, se abrirá una ventana en la cual aparecerá su nombre completo y se le solicitará ingresar una contraseña, que debe contener al menos 8 caracteres, confirmar el correo electrónico y la opción de ingresar un teléfono como medio de recuperación de la contraseña.</p>
+        <p><strong>3.</strong>   ¿Quién opera ClaveÚnica? </p>
+        <p>
+        El Ministerio Secretaría General de la Presidencia (en adelante, el “Ministerio”) opera ClaveÚnica a través de una solución tecnológica (End-Point OpenID Connect) y una plataforma para la administración de los datos de la Claveúnica de los ciudadanos que la utilizan. Es importante señalar que la contraseña personal nunca está en conocimiento de ninguna de las partes intervinientes, sólo de las personas usuarias. </p>
+        <p><strong>4.</strong>  Sobre la utilización de ClaveÚnica.</p>
+        <p>Al aceptar los presentes términos usted declara entender y aceptar lo siguiente:</p>
+        <p>(a) Que el sistema no puede asegurar 100% de disponibilidad, por lo que usted acepta que el sistema puede estar fuera de servicio debido a problemas técnicos. El Ministerio hará todos los esfuerzos razonables que sean necesarios para evitar esta clase de contingencias. No obstante, usted al aceptar estos términos entiende que esta clase de inconvenientes son técnicamente inevitables.</p>
+        <p>(b) En consecuencia, este sistema es proporcionado por Ministerio "tal cual". En consecuencia, no se otorga ninguna garantía expresa o implícita. En ningún caso el Ministerio será responsable por daños directos, indirectos, incidentales, especiales, ejemplar o consecuenciales (incluyendo, pero no limitado a, la adquisición de bienes o servicios; pérdida de uso, de datos o de beneficios, o interrupción de la actividad), y en cualquier teoría de responsabilidad, ya sea en materia de responsabilidad contractual o extracontractual que de alguna manera pueda surgir del uso de este programa computacional, incluso si se ha advertido de la posibilidad de tales daños.</p>
+        <p>(c) El Ministerio sólo provee el servicio de autenticación de las personas. Ello, no obstante, no asegura el mal uso de las claves que se le han entregado a las personas o de los sistemas computacionales que dichas personas han accedido a través dicho medio de autenticación. En consecuencia, el Ministerio no se hace responsable por el uso que las personas den a dicha clave. El uso correcto  de la clave es responsabilidad de las personas.</p>
+        <p>(d) El Ministerio no es responsable acerca de la actualización de los datos personales de las personas que hagan uso de las plataformas electrónicas que son accedidas a través de ClaveÚnica.</p> 
+        <p><strong>5.</strong>  Sobre la modificación de estos Términos y Condiciones.</p>
+        <p>Usted al aceptar estos términos faculta al Ministerio para modificar los presentes términos y condiciones. En consecuencia, usted se obliga a revisar periódicamente estos términos.</p>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

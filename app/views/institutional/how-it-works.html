@@ -1,0 +1,24 @@
+<section id="how-it-works">
+  <div class="container">
+    <h1>¿Cómo funciona?</h1>
+    <h2>Funcionamiento General de OpenID Connect en ClaveÚnica</h2>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>¿Qué es?</h3>
+        <p>OpenID Connect es un protocolo estándar que permite autenticar y/o autorizar identidades para obtener un recurso protegido.</p>
+        <p>Permite tres flujos para la autenticación, que dictan cómo es la interacción entre el consumidor y el proveedor del servicio.</p>
+        <p>En particular, ClaveÚnica implementa el flujo Authorization Code Flow, el cual permite mantener sesiones de acceso por períodos más largos y con mayores controles de seguridad.</p>
+        <h3>Authorization Code Flow o Flujo de código de autorización</h3>
+        <p>Para este mecanismo de autenticación, el servicio deberá obtener con ClaveÚnica un código de acceso, posterior a la identificación del usuario en Registro Civil, que puede ser cambiado por un Token de acceso.</p>
+        <p>Este token permitirá obtener la autorización para acceder al usuario a un recurso protegido, y a su vez, que dicha aplicación sea autenticada en ClaveÚnica, por lo que el Token de acceso es cambiado por un Token de autorización lo que se traduce que tanto el usuario como tu servicio fueron autenticados y autorizados por el servicio de ClaveÚnica.</p>
+        <p>Este token permite mantener la sesión del usuario y de la aplicación, ambos identificado por el servicio de ClaveÚnica.</p>
+        <p>Sin embargo, el Token de autorización tiene un tiempo de expiración, que puede ser extendido siempre y cuando la aplicación envíe solicitudes de refresco (sin la necesidad de volver hacer el proceso de autenticación)</p>
+        <p>El siguiente diagrama de secuencia se resume el proceso de autenticacion y autorizacion de ClaveÚnica</p>
+        <img class="img-responsive center-block" src="/images/flujo-oidc.png" alt="Diagrama de secuencia" />
+      </div>
+      <div class="col-md-4 hidden-xs hidden-sm">
+        <ng-include src="'views/institutional/sidebar.html'"></ng-include>
+      </div>
+    </div>
+  </div>
+</section>
