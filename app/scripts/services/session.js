@@ -87,7 +87,7 @@ function session(Api, $cacheFactory, $storage, $state, $q, $timeout) {
     function clearAll() {
         $storage.clear();
         $cacheFactory.get('$http').removeAll();
-        $state.go('citizen.home', {}, { reload: true });
+        $state.go('citizen.home', {}, { reload: true, inherit: false, notify: true });
     }
 
     this.logout = function () {

@@ -29,7 +29,7 @@
             <h3 class="text-center">Actualmente contamos con</h3>
             <div class="row">
               <div class="col-md-3 col-sm-3">
-                <span class="number">{{ data.metricas.numberUsers }}</span>
+                <span class="number">{{ data.metricas.numberUsers  | megaNumber }}</span>
                 <span class="description">Ciudadanos activos</span>
               </div>
               <div class="col-md-3 col-sm-3">
@@ -41,8 +41,8 @@
                 <span class="description">Trámites en línea</span>
               </div>
               <div class="col-md-3 col-sm-3">
-                <span class="number">{{ data.metricas.numberTransactionsDay }}</span>
-                <span class="description">Transacciones diarias</span>
+                <span class="number">{{ data.metricas.numberTransactionsDay | megaNumber  }}</span>
+                <span class="description">Transacciones del día</span>
               </div>
             </div>
           </div>
