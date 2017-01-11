@@ -74,42 +74,38 @@ angular.module('claveunica', [
         defaultUrlParams: ['scope', 'client_id', 'redirect_uri', 'state', 'response_type']
     });
 })
-.filter('megaNumber', function () {
-    return function (number, fractionSize) {
-
-        if(number === null) return null;
-        if(number === 0) return "0";
-
-        if(!fractionSize || fractionSize < 0)
-            fractionSize = 1;
-
-        var abs = Math.abs(number);
-        var rounder = Math.pow(10,fractionSize);
-        var isNegative = number < 0;
-        var key = '';
-        var powers = [
-            {key: "Q", value: Math.pow(10,15)},
-            {key: "T", value: Math.pow(10,12)},
-            {key: "B", value: Math.pow(10,9)},
-            {key: "M", value: Math.pow(10,6)},
-            {key: "K", value: 1000}
-        ];
-
-        for(var i = 0; i < powers.length; i++) {
-
-            var reduced = abs / powers[i].value;
-
-            reduced = Math.round(reduced * rounder) / rounder;
-
-            if(reduced >= 1){
-                abs = reduced;
-                key = powers[i].key;
-                break;
-            }
+.filter("formatPrice", function() {
+  return function(price, digits, thoSeperator, decSeperator, bdisplayprice) {
+    var i;
+    // digits = (typeof digits === "undefined") ? 2 : digits;
+    digits = (typeof digits === "undefined") ? 0 : digits;
+    bdisplayprice = (typeof bdisplayprice === "undefined") ? true : bdisplayprice;
+    thoSeperator = (typeof thoSeperator === "undefined") ? "." : thoSeperator;
+    // decSeperator = (typeof decSeperator === "undefined") ? "," : decSeperator;
+    decSeperator = (typeof decSeperator === "undefined") ? "" : decSeperator;
+    price = price.toString();
+    var _temp = price.split(".");
+    // var dig = (typeof _temp[1] === "undefined") ? "00" : _temp[1];
+    var dig = (typeof _temp[1] === "undefined") ? "" : _temp[1];
+    if (bdisplayprice && parseInt(dig,10)===0) {
+        // dig = "-";
+    } else {
+        dig = dig.toString();
+        if (dig.length > digits) {
+            dig = (Math.round(parseFloat("0." + dig) * Math.pow(10, digits))).toString();
         }
-
-        return (isNegative ? '-' : '') + abs + key;
-    };
+        for (i = dig.length; i < digits; i++) {
+            dig += "0";
+        }
+    }
+    var num = _temp[0];
+    var s = "",
+        ii = 0;
+    for (i = num.length - 1; i > -1; i--) {
+        s = ((ii++ % 3 === 2) ? ((i > 0) ? thoSeperator : "") : "") + num.substr(i, 1) + s;
+    }
+    return s + decSeperator + dig;
+}
 })
 .run(function ($rootScope, $state, $stateParams, session) {
     'ngInject';

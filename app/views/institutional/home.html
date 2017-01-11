@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="tarjeta text-center">
-            <h3>Estado de CU</h3>
+            <h3>Estado del Servicio</h3>
             <div id="status" ng-class="status"></div>
             <span ng-show="!data">Obteniendo estado...</span>
             <div ng-switch="data.statusClaveUnica">
@@ -28,21 +28,21 @@
           <div class="tarjeta">
             <h3 class="text-center">Actualmente contamos con</h3>
             <div class="row">
-              <div class="col-md-3 col-sm-3">
-                <span class="number">{{ data.metricas.numberUsers  | megaNumber }}</span>
+              <div class="col-md-4 col-sm-4">
+                <span class="number" style="color: #9e9e9e !important">{{ data.metricas.numberUsers | formatPrice }}</span>
                 <span class="description">Ciudadanos activos</span>
               </div>
-              <div class="col-md-3 col-sm-3">
-                <span class="number">{{ data.metricas.numberInstitutions }}</span>
-                <span class="description">Instituciones activas</span>
+              <div class="col-md-2 col-sm-2">
+                <span class="number">{{ data.metricas.numberInstitutions | formatPrice }}</span>
+                <span class="description">Instituciones</span>
               </div>
               <div class="col-md-3 col-sm-3">
-                <span class="number">{{ data.metricas.numberApps }}</span>
-                <span class="description">Trámites en línea</span>
+                <span class="number">{{ data.metricas.numberApps | formatPrice }}</span>
+                <span class="description">Trámites</span>
               </div>
               <div class="col-md-3 col-sm-3">
-                <span class="number">{{ data.metricas.numberTransactionsDay | megaNumber  }}</span>
-                <span class="description">Transacciones del día</span>
+                <span class="number">{{ data.metricas.numberTransactionsDay | formatPrice }}</span>
+                <span class="description">Transacciones hoy</span>
               </div>
             </div>
           </div>
