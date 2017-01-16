@@ -28,7 +28,7 @@
               </button>
             </span>
           </div>
-          <small>Debe contener al menos 8 caracteres y debes combinar letras mayúsculas y minúsculas, números y/o símbolos.</small>
+          <small>Debe contener al menos 8 caracteres y contar con <strong>letras mayúsculas, minúsculas y números</strong> (puedes agregar símbolos para mayor seguridad).</small>
 
           <p ng-messages="form.pwd.$error" class="text-danger" ng-if="form.pwd.$dirty">
             <span ng-message="invalidchar">La contraseña contiene símbolos no permitidos (<span ng-bind="$ctrl.pswdInvalidChars()"></span>)</span>

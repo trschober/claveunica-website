@@ -419,14 +419,14 @@ table.cebra tbody tr:nth-child(2n) {
   display: block;
   font-weight: bold;
   color:#ccc;
-  width: 100px;
+  /*width: 100px;*/
 }
 #metrics .description{
   font-size:14px;
   font-weight: bold;
   display:block;
   text-align: center;
-  width: 100px;
+  /*width: 100px;*/
 }
 /*COMO FUNCIONA*/
 #how-it-works .col-md-8{

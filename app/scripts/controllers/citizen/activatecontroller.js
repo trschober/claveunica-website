@@ -1,6 +1,6 @@
 'use strict';
 
-function ActivateController($scope, $state) {
+function ActivateController($scope, $state, Api) {
     'ngInject';
 
     $scope.user = {};
