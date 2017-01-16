@@ -1,6 +1,6 @@
 'use strict';
 
-function session(Api, $cacheFactory, $storage, $state, $q, $timeout) {
+function session(Api, $cacheFactory, $storage, $q, $window) {
     'ngInject';
 
     this.user = null;
@@ -87,7 +87,7 @@ function session(Api, $cacheFactory, $storage, $state, $q, $timeout) {
     function clearAll() {
         $storage.clear();
         $cacheFactory.get('$http').removeAll();
-        $state.go('citizen.home', {}, { reload: true });
+        $window.location.reload();
     }
 
     this.logout = function () {
