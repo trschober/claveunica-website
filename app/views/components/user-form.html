@@ -14,7 +14,6 @@
           <div class="input-group">
             <input ng-model="$ctrl.password"
                    ng-model-options="{ allowInvalid: $ctrl.allowInvalid }"
-                   strong-pass
                    type="{{ $ctrl.showPassword[0] ? 'text' : 'password' }}"
                    name="pwd"
                    class="form-control"
@@ -108,10 +107,10 @@
                  name="tel"
                  class="form-control"
                  placeholder="Ingresa tu número celular">
+                 <small> Ejemplo <b>912345678</b></small>
             </div>
           </div>
         </div>
-        <small>Ejemplo: +56 9 74020008</small>
 
         <div class="input-group" show-errors>
           <div class="row">
@@ -131,11 +130,10 @@
                      name="tel_confirm"
                      class="form-control"
                      placeholder="Reingresa tu número celular">
+              <small>Por favor repite tu número celular para evitar errores.</small>
             </div>
           </div>
         </div>
-
-        <small>Por favor repite tu número celular para evitar errores.</small>
 
         <p ng-messages="form.tel_confirm.$error" class="text-danger" ng-if="!form.tel_confirm.$valid">
           <span ng-message="compareTo">Los teléfonos no coinciden</span>
@@ -145,7 +143,7 @@
           <span ng-message="compareTo">Los códigos de país no coinciden</span>
         </p>
 
-        <div class="text-center">
+        <div class="text-center" style="margin-top: 10px !important">
           <button promise-btn
                   class="btn btn-primary"
                   ng-click="$ctrl.save()"
