@@ -1,3 +1,32 @@
+<script>
+
+var req = new XMLHttpRequest();
+req.open('GET', document.location, false);
+req.send(null);
+var headers = req.getAllResponseHeaders();
+aHeaders = headers.split("\n");
+var cu_type = '';
+for(var a=0;a<aHeaders.length;a++){
+  var temp_headers = aHeaders[a].split(": ");
+  if( temp_headers[0] == 'cu_type'){
+    if(temp_headers[1] == 'totem' ){
+      cu_type = 'totem';
+    }
+  }
+}
+if( cu_type != '' ){
+  console.log("con parametro => "+cu_type);
+  $("footer").remove();
+  $(".barra-superior").remove();
+  $(".tarjeta").parents()[0].remove();
+  $("#bs-navbar").remove();
+  $(".navbar-toggle").remove();
+}else{
+  console.log("sin parametro");
+}
+
+</script>
+
 <section id="activar">
   <div class="container">
     <div class="row">
