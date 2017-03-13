@@ -64,6 +64,23 @@ function RouterCiudadano($stateProvider) {
           data: { pageTitle: 'Configurar mis datos' },
           params: { data: null }
       })
+      .state('citizen.activation_mini', {
+          abstract: true,
+          url: 'activar_mini',
+          template: '<ui-view />'
+      })
+      .state('citizen.activation_mini.form', {
+          url: '',
+          templateUrl: 'views/citizen/activate_mini.html',
+          controller: 'ActivateminiController',
+          data: { pageTitle: 'Activar clave mini' }
+      })
+      .state('citizen.activation_mini.configmini', {
+          templateUrl: 'views/citizen/configmini.html',
+          controller: 'ConfigminiController',
+          data: { pageTitle: 'Configurar mis datos mini' },
+          params: { data: null }
+      })
       .state('citizen.activity',  {
           url: 'actividad',
           templateUrl: 'views/citizen/activity.html',
