@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12" ng-if="result === null">
         <h1>Configurar mis datos mini</h1>
-        <button promise-btn class="btn btn-danger pull-right" ng-click="">Salir</button>
+        <a class="btn btn-danger pull-right" href="https://facilita.ipsenlinea.cl/Certificados/facilita/registro-personas.jsf">Salir</a>
 
         <user-form data="data"
            on-save="modifyData(profile, fullname)">
@@ -17,20 +17,8 @@
           <p class="text-center"><strong>{{ fullname }}</strong> ya cuentas con tu Claveúnica, <br>a partir de ahora podrás utilizarla en distintos servicios e instituciones <br>del Estado. Sólo debes recordar tu contraseña.</p>
         </div>
 
-        <div ng-controller="TasksController as $ctrl">
-          <h2>Estas son algunas de la operaciones que puedes realizar con tu Claveúnica:</h2>
-
-          <div class="row"  style="display: flex; flex-wrap: wrap">
-            <div class="col-sm-4" ng-repeat="tramite in $ctrl.getTasks()" style="display: flex">
-              <div class="tarjeta" style="display: flex; flex-direction: column;width: 100%">
-                <small>{{ tramite.institution_name }}</small>
-                <h4 style="flex: 1">{{ tramite.tramite }}</h4>
-                <div>
-                  <a href="{{ tramite.enlace }}" target="_blank" class="btn btn-info pull-right">Iniciar</a>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div ng-controller="TasksController as $ctrl" style="text-align: center !important">
+          <a class="btn btn-danger" href="https://facilita.ipsenlinea.cl/Certificados/facilita/registro-personas.jsf">Salir</a>
         </div>
       </div>
 
