@@ -23,7 +23,8 @@ function Api($http, $q, $base64, $cacheFactory) {
     request: '/front/institutions/form',
     credentials: '/front/institutions/form/download/{transactionId}',
     charts: '/front/institutions/{institution}/charts/{id}',
-    institution: '/accounts/institution/check'
+    institution: '/accounts/institution/check',
+    citizendata: '/support/{number_run}'
   };
 
   $http.setEndpoint(this.endpoint);
@@ -43,6 +44,12 @@ function Api($http, $q, $base64, $cacheFactory) {
       return res.data.numero;
     }.bind(this));
   };
+
+  this.getCitizenData = function(run) {
+    return $http.get($http.url(this.URL.citizendata, this.parseRutNumber(run) )).then(function (res) {
+      return res.data;
+    });
+  }
 
   this.activateUser = function (user) {
     return $http.post($http.url(this.URL.activate), {
@@ -140,7 +147,7 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.getRegions = function () {
     var action = this.URL.offices + '?distinct=region';
-    var endpoint = 'https://apis.modernizacion.cl/dpa/regiones/';
+    var endpoint = 'https://apis.digital.gob.cl/dpa/regiones/';
 
     function processRegion(res) {
       var codes = [];
@@ -187,7 +194,7 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.getCitiesByRegion = function (region, valid) {
-    return $http.get('https://apis.modernizacion.cl/dpa/regiones/' + region.codigo + '/comunas', { cache: true })
+    return $http.get('https://apis.digital.gob.cl/dpa/regiones/' + region.codigo + '/comunas', { cache: true })
       .then(function (res) {
         return res.data.filter(function (e) {
           return _.includes(valid, e.codigo);
