@@ -7,6 +7,8 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.meta = angular.element('meta[name=api-endpoint]');
   this.endpoint = _.trimEnd(this.meta.attr('content'), '/');
 
+  this.endpoint_info = 'https://login.claveunica.gob.cl';
+
   this.URL = {
     activate: '/codes',
     check: '/accounts/check',
@@ -40,18 +42,20 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.check = function () {
-    return $http.get($http.url(this.URL.check)).then(function (res) {
-      return res.data.numero;
+    // return $http.get($http.url(this.URL.check)).then(function (res) {
+    return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+      // return res.data.numero;
+      return res.numero;
     }.bind(this));
   };
 
   this.getCitizenData = function(run) {
-    return $http.get($http.url(this.URL.citizendata, this.parseRutNumber(run) )).then(function (res) {
+    return $http.get($http.url(this.URL.citizendata, this.parseRutNumber(run))).then(function (res) {
       return res.data;
     });
   }
 
-  this.activateUser = function (user) {
+  this.activateUser = function (user) { 
     return $http.post($http.url(this.URL.activate), {
       numero: this.parseRutNumber(user.numero),
       code_activation: $base64.encode(user.code_activation)
@@ -65,8 +69,10 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.userInfo = function (run) {
-    return $http.get($http.url(this.URL.account, run)).then(function (res) {
-      return res.data;
+    // return $http.get($http.url(this.URL.account, run)).then(function (res) {
+    return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+      // return res.data;
+      return res;
     });
   };
 
@@ -89,7 +95,8 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.logout = function () {
-    return $http.delete($http.url(this.URL.logout));
+    // return $http.delete($http.url(this.URL.logout));
+    return $http.delete(this.endpoint_info.concat("/accounts/logout"));
   };
 
   this.getFaqs = function () {
