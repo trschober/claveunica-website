@@ -1,0 +1,19 @@
+<section id="autenticar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Acceder</h1>
+
+        <user-login-form data="data"
+           on-save="accessUser(user)">
+        </user-login-form>
+
+      </div>
+
+      <div class="col-md-12" ng-show="result === 'error'">
+        <h1 class="text-center">Lo sentimos, ha ocurrido un error.</h1>
+      </div>
+
+    </div>
+  </div>
+</section>

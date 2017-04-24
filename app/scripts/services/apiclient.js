@@ -26,7 +26,7 @@ function Api($http, $q, $base64, $cacheFactory) {
     credentials: '/front/institutions/form/download/{transactionId}',
     charts: '/front/institutions/{institution}/charts/{id}',
     institution: '/accounts/institution/check',
-    citizendata: '/support/{number_run}'
+    citizendata: '/support/{number_run}',
   };
 
   $http.setEndpoint(this.endpoint);
@@ -43,6 +43,11 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.check = function () {
     // return $http.get($http.url(this.URL.check)).then(function (res) {
+    $.ajaxSetup({
+      headers : {
+        'token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTU5ODkwOTEsImV4cCI6MTQ5MzA1ODIxNn0.E_UbLRGIwjdpyftYHJQgyM4JSJQ-UN87vgCoeCNKnLQ'
+      }
+    });
     return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
       // return res.data.numero;
       return res.numero;
@@ -96,7 +101,7 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.logout = function () {
     // return $http.delete($http.url(this.URL.logout));
-    return $http.delete(this.endpoint_info.concat("/accounts/logout"));
+    return $http.delete(this.endpoint_info.concat("/accounts/logout")); 
   };
 
   this.getFaqs = function () {

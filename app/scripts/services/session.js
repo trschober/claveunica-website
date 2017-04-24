@@ -40,8 +40,16 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
         // }
 
         // window.location.replace(endpoint + query.join('&'));
-        var endpoint_info = 'https://login.claveunica.gob.cl';
-        window.location = endpoint_info.concat("/accounts/login?next=" + encodeURIComponent(window.location.href).replace(/'/g,"%27").replace(/"/g,"%22"));
+        
+
+        // var endpoint_info = 'https://login.claveunica.gob.cl';
+        // window.location = endpoint_info.concat("/accounts/login?next=" + encodeURIComponent(window.location.href).replace(/'/g,"%27").replace(/"/g,"%22"));
+
+        /* redirect to login page */
+
+        $state.go('citizen.login', {
+            data: {"a":"1"}
+        });
     }
 
     this.check = function () {
