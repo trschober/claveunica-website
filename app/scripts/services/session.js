@@ -47,9 +47,7 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
 
         /* redirect to login page */
 
-        $state.go('citizen.login', {
-            data: {"a":"1"}
-        });
+        window.location = "/acceder";
     }
 
     this.check = function () {

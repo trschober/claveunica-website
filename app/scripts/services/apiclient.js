@@ -42,17 +42,17 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.check = function () {
-    // return $http.get($http.url(this.URL.check)).then(function (res) {
-    $.ajaxSetup({
-      headers : {
-        'token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTU5ODkwOTEsImV4cCI6MTQ5MzA1ODIxNn0.E_UbLRGIwjdpyftYHJQgyM4JSJQ-UN87vgCoeCNKnLQ'
-      }
-    });
-    return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
-      // return res.data.numero;
-      return res.numero;
+    return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+      return res.data.numero;
     }.bind(this));
   };
+
+  this.authenticateUser = function(user, pass){
+    return $http.post(this.endpoint_info.concat("/accounts/login"), {username: user, password: $base64.encode(pass) }).then(function (res) {
+      localStorage.setItem('token', res.data.token);
+      return res.data;
+    });
+  }
 
   this.getCitizenData = function(run) {
     return $http.get($http.url(this.URL.citizendata, this.parseRutNumber(run))).then(function (res) {
@@ -74,10 +74,8 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.userInfo = function (run) {
-    // return $http.get($http.url(this.URL.account, run)).then(function (res) {
-    return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
-      // return res.data;
-      return res;
+    return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+      return res.data;
     });
   };
 
@@ -100,8 +98,9 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.logout = function () {
-    // return $http.delete($http.url(this.URL.logout));
-    return $http.delete(this.endpoint_info.concat("/accounts/logout")); 
+    return $http.delete(this.endpoint_info.concat("/accounts/logout")).then(function (res) {
+      localStorage.removeItem('token');
+    });; 
   };
 
   this.getFaqs = function () {
