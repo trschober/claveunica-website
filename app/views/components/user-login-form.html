@@ -1,31 +1,53 @@
-<div class="row">
+<div id="formClaveUnica" class="form-horizontal">
+  <form class="form-horizontal" name="form" style="background-color: white; margin-top: 80px; border-radius: 6px;">
+    <fieldset>
 
-  <div class="col-md-12">
-    <form name="form" class="caja" novalidate>
-      <h4>Ingresa tu RUN y contraseña</h4>
-
-      <div class="form-group" show-errors>
-        <input ng-model="user.run" name="run" class="form-control" placeholder="RUN" required validate-rut>
-        <small>Ejemplo: 11.111.111-1</small>
-        <p ng-messages="form.run.$error" ng-if="form.run.$touched" class="text-danger">
-          <span ng-message="required">Debes completar esta información</span>
-          <span ng-message="validateRut">El RUN no es válido</span>
-        </p>
+      <div class="logo"><img src="images/logo.png" alt="ClaveÚnica" height="120"></div>
+      
+      <div class="alert alert-info" style="background-color: #d9edf7; border: 1px solid transparent;">
+        <span class="realm"></span>Portal ClaveÚnica requiere autenticación
+      </div>
+        
+      <div class="row">
+        <div class="col-sm-offset-2 col-sm-8">
+          <div class="main">
+            <div class="form-group" show-errors>
+              <label class="col-xs-4 control-label" for="inputUsuario">RUN</label>
+                <div class="col-xs-8">
+                  <input ng-model="user.run" name="run" type="text" class="form-control rut" placeholder="RUN" required validate-rut placeholder="Ej: 12345678-9">
+                </div>
+                <p ng-messages="form.run.$error" ng-if="form.run.$touched" class="text-danger">
+                  <span ng-message="required">Debes completar esta información</span>
+                  <span ng-message="validateRut">El RUN no es válido</span>
+                </p>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="col-xs-4 control-label" for="inputPassword">Contraseña</label>
+              <div class="col-xs-8">
+                <input ng-model="user.password" name="password" type="password" class="form-control" placeholder="Contraseña" required>
+                <p ng-messages="form.code.$error" ng-if="form.code.$touched" class="text-danger">
+                <span ng-message="required">Debes completar esta información</span>
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12" style="text-align: right">
+                  <a class="recovery" href="https://claveunica.gob.cl/recuperar"> ¿Olvidaste tu contraseña?</a>
+              </div>
+              <div class="col-xs-12" style="text-align: right">
+                  <a class="faq" href="https://claveunica.gob.cl/faqs"> ¿Necesitas Ayuda?</a>
+              </div>
+            </div>
+            <div class="form-group" id="buttons-div">
+              <div class="col-xs-12" style="text-align: right">
+                  <button promise-btn class="btn btn-primary" ng-disabled="form.$invalid" ng-click="$ctrl.save(user)">Autenticar</button>
+                  <button class="btn" onclick="location.href='https://claveunica.gob.cl?error=true';" type="button" style="background-color: silver; color: #656565;">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group" show-errors>
-        <input ng-model="user.password" name="password" type="password" class="form-control" placeholder="Contraseña" required>
-        <p ng-messages="form.code.$error" ng-if="form.code.$touched" class="text-danger">
-          <span ng-message="required">Debes completar esta información</span>
-        </p>
-      </div>
-
-      <p ng-if="apiError" class="alert alert-danger">{{ message }}</p>
-
-      <div class="centrado">
-        <button promise-btn class="btn btn-primary" ng-disabled="form.$invalid" ng-click="$ctrl.save(user)">Acceder</button>
-      </div>
-    </form>
-  </div>
-
+    </fieldset>
+  </form>
 </div>

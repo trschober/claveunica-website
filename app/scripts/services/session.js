@@ -46,8 +46,11 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
         // window.location = endpoint_info.concat("/accounts/login?next=" + encodeURIComponent(window.location.href).replace(/'/g,"%27").replace(/"/g,"%22"));
 
         /* redirect to login page */
-
-        window.location = "/acceder";
+        if ( localStorage.getItem('token') != null ){
+            window.location = "/";
+        }else{
+            window.location = "/acceder";
+        }
     }
 
     this.check = function () {
@@ -73,6 +76,7 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
                 $storage.clear();
                 $cacheFactory.get('$http').removeAll();
                 self.user = null;
+                localStorage.removeItem('token');
                 defer.resolve(null);
             })
         ;

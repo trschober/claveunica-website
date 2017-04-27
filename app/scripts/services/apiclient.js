@@ -49,7 +49,6 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.authenticateUser = function(user, pass){
     return $http.post(this.endpoint_info.concat("/accounts/login"), {username: user, password: $base64.encode(pass) }).then(function (res) {
-      localStorage.setItem('token', res.data.token);
       return res.data;
     });
   }
@@ -75,6 +74,7 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.userInfo = function (run) {
     return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+      console.log("2");
       return res.data;
     });
   };
