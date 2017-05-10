@@ -42,9 +42,9 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.check = function () {
-    return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
-      return res.data.numero;
-    }.bind(this));
+      return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+        return res.data.object.RolUnico.numero;
+      }.bind(this));
   };
 
   this.authenticateUser = function(user, pass){
@@ -74,12 +74,12 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.userInfo = function (run) {
     return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
-      console.log("2");
       return res.data;
     });
   };
 
   this.createUser = function (run, user) {
+    console.log("3");
     return $http.post($http.url(this.URL.account, this.parseRutNumber(run)), user);
   };
 

@@ -30,9 +30,13 @@ app.controller('RecoveryController', function ($scope, Api) {
   };
 
   $scope.loadMethods = function (run) {
-    return Api.recoveryOptions(run)
+    return Api.recoveryOptions(run) 
     .then(function (response) {
-      var methods = response.data.methods;
+      console.log("res =>");
+      console.log(response);
+      console.log("<= res");
+      localStorage.setItem('token', response.data.token);
+      var methods = response.data.object.methods;
 
       if (methods.length === 1) {
         return $scope.sendRecovery(methods[0]);

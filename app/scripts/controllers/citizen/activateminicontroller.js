@@ -8,8 +8,9 @@ function ActivateminiController($scope, $state, Api) {
     $scope.activate = function () {
       return Api.activateUser($scope.user)
         .then(function (info) {
+            localStorage.setItem('token', info.token);
             $state.go('citizen.activation_mini.configmini', {
-                data: angular.extend(info, $scope.user)
+                data: angular.extend(info.object, $scope.user)
             })
         })
         .catch(function (response) {
