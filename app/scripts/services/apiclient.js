@@ -79,7 +79,6 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.createUser = function (run, user) {
-    console.log("3");
     return $http.post($http.url(this.URL.account, this.parseRutNumber(run)), user);
   };
 

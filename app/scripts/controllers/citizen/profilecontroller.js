@@ -7,9 +7,6 @@ function ProfileController($scope, Api, session) {
   $scope.data = null;
 
   $scope.modifyData = function (profile, fullname) {
-    console.log("1-");
-    console.log($scope.data);
-    console.log("-2");
     return Api.updateUser(profile, $scope.data.rut)
       .then(function () {
         $scope.result = 'success';
@@ -30,10 +27,6 @@ function ProfileController($scope, Api, session) {
       rut: data.rut
     };
   });
-
-  console.log("3-");
-  console.log($scope.data);
-  console.log("-4");
 
 }
 

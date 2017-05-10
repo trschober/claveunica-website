@@ -9,9 +9,6 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
         var user, defer = $q.defer();
 
         if (user = $storage.get('user-data')) {
-            console.log("=>");
-            console.log(user);
-            console.log("<=");
             defer.resolve(user);
         } else {
             defer.reject(null);
@@ -62,20 +59,12 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
 
         Api.check()
             .then(function (rut) {
-                console.log("then 1");
                 return Api.userInfo(rut).then(function (res) {
-                    console.log("res > ");
-                    console.log(res);
-                    console.log("< res");
                     res['rut'] = rut;
-                    console.log("res2 > ");
-                    console.log(res);
-                    console.log("< res2");
                     return self.user = $storage.set('user-data', res);
                 });
             })
             .then(function (data) {
-                console.log("then 2");
                 return Api.isInstitution().then(function (res) {
                     data['instutition'] = res;
                     defer.resolve($storage.set('user-data', data));

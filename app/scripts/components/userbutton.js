@@ -8,11 +8,6 @@ function UserButtonController(session, $scope) {
     this.loggedIn = false;
 
     this.getUserData = function () {
-
-        console.log("user-");
-        console.log(this.user);
-        console.log("-user");
-
         var n = this.user.object.name.nombres;
         var l = this.user.object.name.apellidos;
 
