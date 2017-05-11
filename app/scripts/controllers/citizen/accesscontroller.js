@@ -1,9 +1,11 @@
 'use strict';
 
-function AccessController($scope, $state, Api, $http, session) {
+function AccessController($scope, $state, Api, $http, session, Messages) {
     'ngInject';
 
     $scope.user = {};
+
+    console.log( Messages.response(1));
 
     $scope.accessUser = function (user) { 
         return Api.authenticateUser(user.run, user.password)
