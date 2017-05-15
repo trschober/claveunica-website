@@ -39,7 +39,7 @@
             </p>
           </div>
 
-          <p ng-if="apiError" class="alert alert-danger">{{ message }}</p>
+          <p ng-show="message" class="alert alert-danger" ng-bind-html="message"></p>
 
           <div class="centrado">
             <button promise-btn class="btn btn-primary" ng-disabled="!confirm || form.$invalid" ng-click="activate(user)">Continuar</button>

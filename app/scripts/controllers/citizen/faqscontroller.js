@@ -9,5 +9,5 @@ app.controller('FaqsController', function ($scope, Api) {
         $scope.faqs = faqs;
     }, function () {
         $scope.error = true;
-    });
+    }); 
 });

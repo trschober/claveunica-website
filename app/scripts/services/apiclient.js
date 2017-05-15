@@ -104,7 +104,7 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.getFaqs = function () {
     return $http.get($http.url(this.URL.faqs), { cache: true }).then(function (res) {
-      return res.data.ciudadanosFaq;
+      return res.data.object.faq;
     });
   };
 

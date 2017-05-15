@@ -1,6 +1,6 @@
 'use strict';
 
-function session(Api, $cacheFactory, $storage, $q, $window) {
+function session(Api, $cacheFactory, $storage, $q, $window, Messages) {
     'ngInject';
 
     this.user = null;
@@ -104,6 +104,7 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
 
     this.logout = function () {
         Api.logout().then(clearAll).catch(clearAll);
+        window.location = "/";
     };
 }
 

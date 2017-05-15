@@ -5,17 +5,19 @@ function AccessController($scope, $state, Api, $http, session, Messages) {
 
     $scope.user = {};
 
-    console.log( Messages.response(1));
-
     $scope.accessUser = function (user) { 
         return Api.authenticateUser(user.run, user.password)
             .then(function (info){   
-                /* create user */
-                localStorage.setItem('token', info.token);
-                $state.go('citizen.profile');
+                if( info.token != null ){
+                    /* create user */
+                    localStorage.setItem('token', info.token);
+                    $state.go('citizen.profile');    
+                }else{
+                    $scope.message = Messages.response(info.code);
+                }
             })
             .catch(function (response) {
-                $scope.message = response.data ? (response.data.error || response.data.message) : 'Ha ocurrido un error. Por favor intente nuevamente';
+                $scope.message = Messages.response(0);
             });
     };
 

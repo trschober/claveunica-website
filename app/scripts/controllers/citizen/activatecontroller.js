@@ -1,6 +1,6 @@
 'use strict';
 
-function ActivateController($scope, $state, Api) {
+function ActivateController($scope, $state, Api, Messages) {
     'ngInject';
 
     $scope.user = {};
@@ -8,15 +8,17 @@ function ActivateController($scope, $state, Api) {
     $scope.activate = function () {
       return Api.activateUser($scope.user)
         .then(function (info) {
-            localStorage.setItem('token', info.token);
-            $state.go('citizen.activation.config', {
-                data: angular.extend(info.object, $scope.user)
-            })
+            if( info.token != null ){
+                localStorage.setItem('token', info.token);
+                $state.go('citizen.activation.config', {
+                    data: angular.extend(info.object, $scope.user)
+                })
+            }else{
+                $scope.message = Messages.response(info.code);
+            }
         })
         .catch(function (response) {
-            $scope.apiError = response.status;
-            $scope.message = response.data ? (response.data.error || response.data.message)
-              : 'Ha ocurrido un error. Por favor intente nuevamente';
+            $scope.message = Messages.response(0);
         });
     };
 }

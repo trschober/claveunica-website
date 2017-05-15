@@ -81,7 +81,7 @@ function Messages() {
         strResp = "Codigo invalido (Activación)";
         break;
       case 28:
-        strResp = "No enrolado (Activación)";
+        strResp = "No enrolado (Activación) <a href='http://www.google.cl' target='_blank'>Ejemplo de Link</a>";
         break;
       case 29:
         strResp = "Codigo bloqueado";
@@ -109,7 +109,7 @@ function Messages() {
         strResp = "Usuario no tiene este metodo de recuperación";
         break;
       default:
-        strResp = "";
+        strResp = "Ha ocurrido un error. Por favor intente nuevamente";
     }
 
     return strResp;
