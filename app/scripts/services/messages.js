@@ -86,6 +86,24 @@ function Messages() {
       case 29:
         strResp = "Codigo bloqueado";
         break;
+      case 30:
+        strResp = "Regiones (front)";
+        break;
+      case 31:
+        strResp = "Comunas (front)";
+        break;
+      case 32:
+        strResp = "Instituciones (front)";
+        break;
+      case 33:
+        strResp = "Lugares (front)";
+        break;
+      case 34:
+        strResp = "Faq (front)";
+        break;
+      case 35:
+        strResp = "Tramites (front)";
+        break;
         // # Errores
       case 50:
         strResp = "Usuario no existe (Activación - Obtencion de datos)";

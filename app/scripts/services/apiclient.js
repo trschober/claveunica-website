@@ -126,7 +126,8 @@ function Api($http, $q, $base64, $cacheFactory) {
         .then(function (resp) {
           var codes = [];
 
-          angular.forEach(resp.data['trámites'].institucion, function (e) {
+          // angular.forEach(resp.data['trámites'].institucion, function (e) {
+          angular.forEach(resp.data.object.procedures.institucion, function (e) {
             codes.push($http.get(endpoint + e, { cache: true }).catch(angular.noop));
           });
 
@@ -151,7 +152,8 @@ function Api($http, $q, $base64, $cacheFactory) {
     if (null === service) {
       return this.getRandomTasks(120);
     }
-
+    console.log(this.URL.tasks + '?institucion={id}');
+    console.log(service.codigo);
     return $http.get($http.url(this.URL.tasks + '?institucion={id}', service.codigo));
   };
 

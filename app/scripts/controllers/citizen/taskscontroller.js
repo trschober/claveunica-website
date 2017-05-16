@@ -9,12 +9,12 @@ function TasksController($scope, Api) {
   $scope.getServices = function () {
     return Api.getServices().then(function (services) {
       $scope.services = services;
-    });
+    }); 
   };
 
   $scope.changeService = function (service) {
     return Api.getTasksByService(service).then(function (response) {
-      $scope.updateTasks(response.data['trámites']);
+      $scope.updateTasks(response.data.object.procedures);
     });
   };
 
@@ -36,7 +36,7 @@ function TasksController($scope, Api) {
 
   $scope.getRandomTasks = function(limit) {
     return Api.getRandomTasks(limit).then(function (response) {
-      $scope.updateTasks(response.data['trámites']);
+      $scope.updateTasks(response.data.object.procedures);
     })
   };
 
