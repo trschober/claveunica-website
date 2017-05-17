@@ -4,12 +4,10 @@ function MetricsController($scope, Api) {
     'ngInject';
 
     $scope.data = {
-        metricas: {
-            numberUsers: 0,
-            numberInstitutions: 0,
-            numberApps: 0,
-            numberTransactionsDay: 0
-        }
+        numberUsers: 0,
+        numberInstitutions: 0,
+        numberApps: 0,
+        numberTransactionsDay: 0
     };
 
     $scope.statusClss = [

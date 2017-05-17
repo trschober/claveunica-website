@@ -37,7 +37,7 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.getMetrics = function () {
     return $http.get($http.url(this.URL.metrics)).then(function (res) {
-      return res.data;
+      return res.data.object;
     });
   };
 
@@ -164,7 +164,7 @@ function Api($http, $q, $base64, $cacheFactory) {
     function processRegion(res) {
       var codes = [];
 
-      angular.forEach(res.data.object.places.region, function (e) {
+      angular.forEach(res.data.object.region, function (e) {
         if (typeof e === "number") {
           return;
         }
@@ -200,7 +200,7 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.getCitiesCodes = function () {
     return $http.get($http.url(this.URL.offices + '?distinct=comuna'), { cache: true })
       .then(function(res) {
-        return res.data.object.places.comuna;
+        return res.data.object.comuna;
       })
     ;
   };
@@ -242,7 +242,7 @@ function Api($http, $q, $base64, $cacheFactory) {
     .then(function (response) {
       var codes = [];
 
-      angular.forEach(response.data.object.places, function (e) {
+      angular.forEach(response.data.object, function (e) {
         codes.push($http.get('https://apis.digital.gob.cl/misc/instituciones/' + e.institucion)
           .then(function (res) {
             e.institution_name = res.data._source.nombre;
