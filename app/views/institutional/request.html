@@ -159,7 +159,7 @@
           </div>
 
           <h4>Tickets de soporte</h4>
-          <p>Puede solicitar soporte en <a href="https://soporte.digital.gob.cl/open.php?topicId=12" target="_blank">https://soporte.digital.gob.cl/open.php?topicId=12</a> indicando alguno de los siguientes identificadores en los detalles del problema:</p>
+          <p>Puede solicitar soporte en <a href="https://soporte.digital.gob.cl/open.php?topicId=12" target="_blank">aqu&iacute;</a> indicando alguno de los siguientes identificadores en los detalles del problema:</p>
           <table class="table table-condensed borderless">
             <tbody>
             <tr ng-show="data.ticketsId.appProduction">
@@ -179,6 +179,9 @@
           <a href="{{ downloadLink }}" class="btn btn-sm btn-success pull-left">
             Descargar <i class="glyphicon glyphicon-download-alt"></i>
           </a>
+          <button class="btn btn-sm btn-success pull-left" ng-click="downloadFile()">
+            Descargar 2 <i class="glyphicon glyphicon-download-alt"></i>
+          </button>
           <button class="btn btn-sm btn-primary pull-right" ng-click="dismissModal()">Aceptar</button>
         </div>
       </script>

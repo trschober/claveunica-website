@@ -1,6 +1,6 @@
 'use strict';
 
-function RequestController($scope, $uibModal, Api) {
+function RequestController($scope, $uibModal, Api, Messages) {
     'ngInject';
 
     $scope.regex = "\\+(?:[0-9] ?){6,14}[0-9]";
@@ -21,10 +21,9 @@ function RequestController($scope, $uibModal, Api) {
     };
 
     $scope.onRequestSuccess = function (response) {
-        $scope.data = response.data;
-        $scope.downloadLink = Api.getCredentialsFileLink(
-            response.data.transactionId
-        );
+        $scope.data = response.data.object;
+        localStorage.setItem('session', response.data.session);
+        $scope.downloadLink = Api.getCredentialsFileLink();
 
         $uibModal.open({
             animation: false,
@@ -33,7 +32,9 @@ function RequestController($scope, $uibModal, Api) {
             backdrop: false,
             controller: function ($scope, $state) {
                 'ngInject';
-
+                $scope.downloadFile = function(){
+                    Api.downloadFileAjax();
+                }
                 $scope.dismissModal = function() {
                     $state.go('institutional.home');
                 };

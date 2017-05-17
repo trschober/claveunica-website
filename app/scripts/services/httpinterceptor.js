@@ -12,6 +12,9 @@ function HttpInterceptor($cookies) {
         if( localStorage.getItem('token') != null ){
           config.headers['token'] = localStorage.getItem('token');
         }
+        if( localStorage.getItem('session') != null ){
+          config.headers['session'] = localStorage.getItem('session');
+        }
 
         return config;
     };

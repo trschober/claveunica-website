@@ -23,7 +23,7 @@ function Api($http, $q, $base64, $cacheFactory) {
     faqs: '/front/faq-users',
     metrics: '/front/institutions/metrics',
     request: '/front/institutions/form',
-    credentials: '/front/institutions/form/download/{transactionId}',
+    credentials: '/front/institutions/form/download',
     charts: '/front/institutions/{institution}/charts/{id}',
     institution: '/accounts/institution/check',
     citizendata: '/support/{number_run}',
@@ -265,8 +265,17 @@ function Api($http, $q, $base64, $cacheFactory) {
     return $http.post($http.url(this.URL.request), request);
   };
 
-  this.getCredentialsFileLink = function(transactionId) {
-    return $http.url(this.URL.credentials, transactionId);
+  this.getCredentialsFileLink = function() {
+    // return $http.url(this.URL.credentials, transactionId);
+    return $http.url(this.URL.credentials);
+  };
+
+  this.downloadFileAjax = function(){
+    return $http.get($http.url(this.URL.credentials)).then(function(res){
+      var FileSaver = require('file-saver');
+      var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+      FileSaver.saveAs(blob, "hello world.txt");
+    });
   };
 
   this.getChartsByPeriod = function (institution, chart, period) {
