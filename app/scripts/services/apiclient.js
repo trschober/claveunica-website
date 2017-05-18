@@ -27,6 +27,7 @@ function Api($http, $q, $base64, $cacheFactory) {
     charts: '/front/institutions/{institution}/charts/{id}',
     institution: '/accounts/institution/check',
     citizendata: '/support/{number_run}',
+    citizendataMethod: '/support/{number_run}/recovery/{method}'
   };
 
   $http.setEndpoint(this.endpoint);
@@ -49,6 +50,12 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.authenticateUser = function(user, pass){
     return $http.post(this.endpoint_info.concat("/accounts/login"), {username: user, password: $base64.encode(pass) }).then(function (res) {
+      return res.data;
+    });
+  }
+
+  this.sendRecoveryAccount = function(run, method){
+    return $http.post($http.url(this.URL.citizendataMethod, this.parseRutNumber(run), method)).then(function (res) {
       return res.data;
     });
   }
@@ -92,7 +99,7 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.getActivity = function (run) {
     return $http.get($http.url(this.URL.stats, run)).then(function (res) {
-      return res.data.lastLog;
+      return res.data.object.lastLog;
     });
   };
 
@@ -152,8 +159,6 @@ function Api($http, $q, $base64, $cacheFactory) {
     if (null === service) {
       return this.getRandomTasks(120);
     }
-    console.log(this.URL.tasks + '?institucion={id}');
-    console.log(service.codigo);
     return $http.get($http.url(this.URL.tasks + '?institucion={id}', service.codigo));
   };
 
@@ -272,9 +277,13 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.downloadFileAjax = function(){
     return $http.get($http.url(this.URL.credentials)).then(function(res){
-      var FileSaver = require('file-saver');
-      var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-      FileSaver.saveAs(blob, "hello world.txt");
+        var blob = new Blob([res.data], { type:"text/plain;charset=utf-8;" });     
+        var downloadLink = angular.element('<a></a>');
+        downloadLink.attr('href',window.URL.createObjectURL(blob));
+        downloadLink.attr('download', 'credenciales.csv');
+        downloadLink[0].click();
+
+      return res.data;
     });
   };
 

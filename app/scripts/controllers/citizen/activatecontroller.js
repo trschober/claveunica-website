@@ -1,5 +1,5 @@
 'use strict';
-
+ 
 function ActivateController($scope, $state, Api, Messages) {
     'ngInject';
 

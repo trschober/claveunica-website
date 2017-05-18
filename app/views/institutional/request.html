@@ -176,12 +176,7 @@
         </div>
 
         <div class="modal-footer">
-          <a href="{{ downloadLink }}" class="btn btn-sm btn-success pull-left">
-            Descargar <i class="glyphicon glyphicon-download-alt"></i>
-          </a>
-          <button class="btn btn-sm btn-success pull-left" ng-click="downloadFile()">
-            Descargar 2 <i class="glyphicon glyphicon-download-alt"></i>
-          </button>
+          <a class="btn btn-sm btn-success pull-left" ng-click="downloadFile()" ng-href="{{ url }}">Descargar <i class="glyphicon glyphicon-download-alt"></i></a>
           <button class="btn btn-sm btn-primary pull-right" ng-click="dismissModal()">Aceptar</button>
         </div>
       </script>
