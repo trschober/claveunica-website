@@ -133,7 +133,6 @@ function Api($http, $q, $base64, $cacheFactory) {
         .then(function (resp) {
           var codes = [];
 
-          // angular.forEach(resp.data['trámites'].institucion, function (e) {
           angular.forEach(resp.data.object.procedures.institucion, function (e) {
             codes.push($http.get(endpoint + e, { cache: true }).catch(angular.noop));
           });
@@ -271,7 +270,6 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.getCredentialsFileLink = function() {
-    // return $http.url(this.URL.credentials, transactionId);
     return $http.url(this.URL.credentials);
   };
 

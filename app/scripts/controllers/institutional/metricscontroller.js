@@ -1,6 +1,6 @@
 'use strict';
 
-function MetricsController($scope, Api) {
+function MetricsController($scope, Api, $interval) {
     'ngInject';
 
     $scope.data = {
@@ -26,6 +26,11 @@ function MetricsController($scope, Api) {
     };
 
     $scope.getMetrics();
+
+    $interval(function() {
+        $scope.getMetrics();
+    }, 2000);
+
 }
 
 angular
