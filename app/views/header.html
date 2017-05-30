@@ -1,8 +1,8 @@
 <nav class="barra-superior">
   <div class="container">
     <ul class="nav navbar-nav">
-      <li id="citizen"><a ui-sref="citizen.home">Ciudadanía</a></li>
-      <li id="institutional"><a ui-sref="institutional.home">Instituciones</a></li>
+      <li id="citizen"><a ui-sref="citizen.home" ui-sref-active="active">Ciudadanía</a></li>
+      <li id="institutional"><a ui-sref="institutional.home" ui-sref-active="active">Instituciones</a></li>
     </ul>
   </div>
 </nav>
@@ -21,7 +21,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a ui-sref="{{ rootState }}" class="navbar-brand" style="padding: 0px !important">
+      <a ui-sref="citizen.home" class="navbar-brand" style="padding: 0px !important">
         <img class="img-responsive" src="images/logo.png" style="height: 73px; padding-right: 4px; margin-top: 10px; margin-left: -2px;">
       </a>
     </div>

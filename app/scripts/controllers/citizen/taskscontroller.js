@@ -14,7 +14,7 @@ function TasksController($scope, Api) {
 
   $scope.changeService = function (service) {
     return Api.getTasksByService(service).then(function (response) {
-      $scope.updateTasks(response.data.object.procedures);
+      $scope.updateTasks(response.data.object);
     });
   };
 
@@ -36,7 +36,7 @@ function TasksController($scope, Api) {
 
   $scope.getRandomTasks = function(limit) {
     return Api.getRandomTasks(limit).then(function (response) {
-      $scope.updateTasks(response.data.object.procedures);
+      $scope.updateTasks(response.data.object);
     })
   };
 

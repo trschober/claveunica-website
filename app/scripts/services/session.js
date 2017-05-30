@@ -18,10 +18,13 @@ function session(Api, $cacheFactory, $storage, $q, $window, Messages) {
     };
 
     function authorize() {
+        console.log("1");
         // var query = ['?'];
         // var meta = angular.element('meta[name=auth-endpoint]');
         // var endpoint = _.trimEnd(meta.attr('content'), '/');
-        // var loc = window.location;
+        //var loc = window.location;
+
+        $scope.pre_url =window.encodeURIComponent(window.location);
 
         // if (!loc.origin) {
         //   loc.origin = loc.protocol + "//" + loc.hostname + (loc.port ? ':' + loc.port: '');
@@ -47,7 +50,7 @@ function session(Api, $cacheFactory, $storage, $q, $window, Messages) {
 
         /* redirect to login page */
         if ( localStorage.getItem('token') != null ){
-            window.location = "/";
+            alert("Estas autenticado!");
         }else{
             window.location = "/acceder";
         }

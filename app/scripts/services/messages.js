@@ -81,7 +81,7 @@ function Messages() {
         strResp = "Codigo invalido (Activación)";
         break;
       case 28:
-        strResp = "No enrolado (Activación) <a href='http://www.google.cl' target='_blank'>Ejemplo de Link</a>";
+        strResp = "No enrolado (Activación)";
         break;
       case 29:
         strResp = "Codigo bloqueado";
