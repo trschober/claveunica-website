@@ -25,7 +25,8 @@ function Api($http, $q, $base64, $cacheFactory) {
     request: '/front/institutions/form',
     credentials: '/front/institutions/form/download',
     charts: '/front/institutions/{institution}/charts/{id}',
-    institution: '/accounts/institution/check',
+    // institution: '/accounts/institution/check',
+    institution: '/accounts/check',
     citizendata: '/support/{number_run}',
     citizendataMethod: '/support/{number_run}/recovery/{method}'
   };

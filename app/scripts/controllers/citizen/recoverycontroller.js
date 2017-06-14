@@ -15,6 +15,8 @@ app.controller('RecoveryController', function ($scope, Api) {
         $scope.recoveryMethod = method;
         $scope.apiError = response.status;
         $scope.message = response.data.message;
+        /* eliminar token de recuperacion */
+        localStorage.removeItem('token');
       })
       .catch(function (error) {
         $scope.recoveryOk = false;

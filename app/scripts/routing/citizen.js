@@ -15,9 +15,12 @@ function RouterCiudadano($stateProvider) {
           data: { pageTitle: 'Inicio' }
       })
       .state('citizen.login', {
-          abstract: true,
+          // abstract: true,
           url: 'acceder',
-          template: '<ui-view/>'
+          templateUrl: 'views/citizen/login.html',
+          controller: 'AccessController',
+          data: { pageTitle: 'Acceder' }
+          // template: '<ui-view/>'
       })
       .state('citizen.login.form', {
           url: '',

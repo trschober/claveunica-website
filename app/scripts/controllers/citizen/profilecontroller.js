@@ -3,15 +3,15 @@
 function ProfileController($scope, Api, session) {
   'ngInject';
 
-  $scope.result = null;
   $scope.data = null;
+  $scope.result = null;
 
   $scope.modifyData = function (profile, fullname) {
     return Api.updateUser(profile, $scope.data.rut)
       .then(function () {
         $scope.result = 'success';
         $scope.profile = profile;
-        $scope.fullname = fullname;
+        $scope.fullname = fullname;       
       })
       .catch(function () {
         $scope.result = 'success';
@@ -26,6 +26,7 @@ function ProfileController($scope, Api, session) {
       phone: data.object.other_info.phone,
       rut: data.rut
     };
+
   });
 
 }

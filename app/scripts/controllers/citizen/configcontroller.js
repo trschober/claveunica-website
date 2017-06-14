@@ -12,6 +12,8 @@ function ConfigController($scope, $stateParams, Api) {
         $scope.result = 'success';
         $scope.profile = profile;
         $scope.fullname = fullname;
+        /* eliminar token de recuperacion */
+        localStorage.removeItem('token');
       })
       .catch(function () {
         $scope.result = 'error';

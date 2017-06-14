@@ -1,6 +1,6 @@
 'use strict';
 
-function session(Api, $cacheFactory, $storage, $q, $window, Messages) {
+function session(Api, $cacheFactory, $storage, $q, $window, Messages, $state) {
     'ngInject';
 
     this.user = null;
@@ -17,43 +17,27 @@ function session(Api, $cacheFactory, $storage, $q, $window, Messages) {
         return defer.promise;
     };
 
-    function authorize() {
-        console.log("1");
-        // var query = ['?'];
-        // var meta = angular.element('meta[name=auth-endpoint]');
-        // var endpoint = _.trimEnd(meta.attr('content'), '/');
-        //var loc = window.location;
-
-        $scope.pre_url =window.encodeURIComponent(window.location);
-
-        // if (!loc.origin) {
-        //   loc.origin = loc.protocol + "//" + loc.hostname + (loc.port ? ':' + loc.port: '');
-        // }
-
-        // var params = {
-        //   scope: 'openid run',
-        //   client_id: '123',
-        //   redirect_uri: window.encodeURIComponent(loc.origin),
-        //   state: (Date.now() + '' + Math.random()).replace('.', ''),
-        //   response_type: 'code'
-        // };
-
-        // for (var k in params) {
-        //   query.push(k + '=' + params[k]);
-        // }
-
-        // window.location.replace(endpoint + query.join('&'));
-        
-
-        // var endpoint_info = 'https://login.claveunica.gob.cl';
-        // window.location = endpoint_info.concat("/accounts/login?next=" + encodeURIComponent(window.location.href).replace(/'/g,"%27").replace(/"/g,"%22"));
-
-        /* redirect to login page */
-        if ( localStorage.getItem('token') != null ){
-            alert("Estas autenticado!");
-        }else{
-            window.location = "/acceder";
+    function authorize(pre_url) {
+        var temp_url = 'acceder';
+        switch(pre_url) {
+            case 'citizen.activity':
+                temp_url = 'actividad';
+                break;
+            case 'citizen.profile':
+                temp_url = 'perfil';
+                break;
+            case 'institutional.soporte':
+                temp_url = 'institucional/soporte';
+                break;
+            case 'institutional.request':
+                temp_url = 'institucional/solicitud-activacion';
+                break;
+            default:
+                temp_url = 'acceder';
         }
+
+        localStorage.setItem('pre_url', temp_url);
+        $state.go('citizen.login');
     }
 
     this.check = function () {
@@ -93,7 +77,7 @@ function session(Api, $cacheFactory, $storage, $q, $window, Messages) {
         }
 
         if (null === $storage.get('user-data')) {
-            authorize();
+            authorize(redirectTo);
         } else {
             window.location.reload();
         }
@@ -102,12 +86,13 @@ function session(Api, $cacheFactory, $storage, $q, $window, Messages) {
     function clearAll() {
         $storage.clear();
         $cacheFactory.get('$http').removeAll();
-        $window.location.reload();
+        // $window.location.reload();
+        localStorage.removeItem('token');
+        window.location = "/";
     }
 
     this.logout = function () {
         Api.logout().then(clearAll).catch(clearAll);
-        window.location = "/";
     };
 }
 

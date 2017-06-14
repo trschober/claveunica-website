@@ -10,6 +10,7 @@ function ActivityController($scope, Api, session) {
       $scope.activities = log;
     });
   });
+
 } 
 
 angular
