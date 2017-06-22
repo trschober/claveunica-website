@@ -57,16 +57,19 @@ function Messages() {
         strResp = "OK (Auth)";
         break;
       case 19:
-        strResp = "Password Incorrect(Auth)";
+        // strResp = "Password Incorrect(Auth)";
+        strResp = "La contraseña es incorrecta";
         break;
       case 20:
         strResp = "Usuario Bloqueado (Auth)";
         break;
       case 21:
-        strResp = "Usuario no existe (no activado ni enrolado) (Auth)";
+        // strResp = "Usuario no existe (no activado ni enrolado) (Auth)"; 
+        strResp = "El Ciudadano no cuenta con Claveúnica"; 
         break;
       case 22:
-        strResp = "Usuario no existe (no activado, si enrolado) (Auth)";
+        // strResp = "Usuario no existe (no activado, si enrolado) (Auth)";
+        strResp = "El Ciudadano necesita <a href='/activar'>activar su cuenta</a>";
         break;
       case 23:
         strResp = "RUN invalido (Auth)";
@@ -75,13 +78,16 @@ function Messages() {
         strResp = "Codigo valido (Activación)";
         break;
       case 26:
-        strResp = "Codigo valido pero expirado (Activación)";
+        // strResp = "Codigo valido pero expirado (Activación)";
+        strResp = "El código no es valido. Puede solicitar uno nuevo <a href='/recuperar'>aquí</a>";
         break;
       case 27:
-        strResp = "Codigo invalido (Activación)";
+        // strResp = "Codigo invalido (Activación)";
+        strResp = "El código no es valido. Puede solicitar uno nuevo <a href='/recuperar'>aquí</a>";
         break;
       case 28:
-        strResp = "No enrolado (Activación)";
+        // strResp = "No enrolado (Activación)";
+        strResp = "El código no es valido. Puede solicitar uno nuevo <a href='/recuperar'>aquí</a>";
         break;
       case 29:
         strResp = "Codigo bloqueado";
@@ -103,6 +109,9 @@ function Messages() {
         break;
       case 35:
         strResp = "Tramites (front)";
+        break;
+      case 45:
+        strResp = "El código de activación ha sido enviado.";
         break;
         // # Errores
       case 50:
