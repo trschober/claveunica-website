@@ -18,30 +18,28 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
     };
 
     function authorize() {
-        // var query = ['?'];
-        // var meta = angular.element('meta[name=auth-endpoint]');
-        // var endpoint = _.trimEnd(meta.attr('content'), '/');
-        // var loc = window.location;
+        var query = ['?'];
+        var meta = angular.element('meta[name=auth-endpoint]');
+        var endpoint = _.trimEnd(meta.attr('content'), '/');
+        var loc = window.location;
 
-        // if (!loc.origin) {
-        //   loc.origin = loc.protocol + "//" + loc.hostname + (loc.port ? ':' + loc.port: '');
-        // }
+        if (!loc.origin) {
+          loc.origin = loc.protocol + "//" + loc.hostname + (loc.port ? ':' + loc.port: '');
+        }
 
-        // var params = {
-        //   scope: 'openid run',
-        //   client_id: '123',
-        //   redirect_uri: window.encodeURIComponent(loc.origin),
-        //   state: (Date.now() + '' + Math.random()).replace('.', ''),
-        //   response_type: 'code'
-        // };
+        var params = {
+          scope: 'openid run',
+          client_id: '123',
+          redirect_uri: window.encodeURIComponent(loc.origin),
+          state: (Date.now() + '' + Math.random()).replace('.', ''),
+          response_type: 'code'
+        };
 
-        // for (var k in params) {
-        //   query.push(k + '=' + params[k]);
-        // }
+        for (var k in params) {
+          query.push(k + '=' + params[k]);
+        }
 
-        // window.location.replace(endpoint + query.join('&'));
-        var endpoint_info = 'https://login.claveunica.gob.cl';
-        window.location = endpoint_info.concat("/accounts/login?next=" + encodeURIComponent(window.location.href).replace(/'/g,"%27").replace(/"/g,"%22"));
+        window.location.replace(endpoint + query.join('&'));
     }
 
     this.check = function () {

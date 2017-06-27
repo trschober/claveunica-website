@@ -7,7 +7,8 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.meta = angular.element('meta[name=api-endpoint]');
   this.endpoint = _.trimEnd(this.meta.attr('content'), '/');
 
-  this.endpoint_info = 'https://login.claveunica.gob.cl';
+  // this.endpoint_info = 'https://login.claveunica.gob.cl';
+  this.endpoint_info = this.endpoint;
 
   this.URL = {
     activate: '/codes',
@@ -42,10 +43,10 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.check = function () {
-    // return $http.get($http.url(this.URL.check)).then(function (res) {
-    return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
-      // return res.data.numero;
-      return res.numero;
+    return $http.get($http.url(this.URL.check)).then(function (res) {
+    // return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+      return res.data.numero;
+      // return res.numero;
     }.bind(this));
   };
 
@@ -69,10 +70,10 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.userInfo = function (run) {
-    // return $http.get($http.url(this.URL.account, run)).then(function (res) {
-    return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
-      // return res.data;
-      return res;
+    return $http.get($http.url(this.URL.account, run)).then(function (res) {
+    // return $.getJSON(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+      return res.data;
+      // return res;
     });
   };
 
@@ -95,8 +96,8 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.logout = function () {
-    // return $http.delete($http.url(this.URL.logout));
-    return $http.delete(this.endpoint_info.concat("/accounts/logout"));
+    return $http.delete($http.url(this.URL.logout));
+    // return $http.delete(this.endpoint_info.concat("/accounts/logout"));
   };
 
   this.getFaqs = function () {
