@@ -51,12 +51,12 @@ function Messages() {
         strResp = "Codigo de activación enviado a <b>"+param+"</b>";
         strResp += "<br><br>";
           if( param.search("@") == -1 ){
-            strResp += "Si el número al que se envió el Código de Activación ya no esta vigente puedes actualizar tus datos en tu perfil de Claveúnica <a href='https://claveunica.gob.cl/perfil'>aquí</a>";
+            strResp += "Si el número no esta vigente puedes corregirlo en tu <a href='https://claveunica.gob.cl/perfil'>perfil</a>";
           }else{
-            strResp += "Si el email al que se envió el Código de Activación ya no esta vigente puedes actualizar tus datos en tu perfil de Claveúnica <a href='https://claveunica.gob.cl/perfil'>aquí</a>. Si no tienes acceso deberas ir nuevamente a alguno de las <a href='https://claveunica.gob.cl/oficinas' target='_blank'>oficinas</a>  que entregan códigos de activación y precisar tu nueva dirección de correo electrónico.";
+            strResp += "Si el mail es incorrecto o no esta vigente puedes corregirlo en tu <a href='https://claveunica.gob.cl/perfil'>perfil</a>. Si no tienes acceso, debes solicitar un nuevo código en la <a href='https://claveunica.gob.cl/oficinas' target='_blank'>oficina</a> más cercana indicando claramente la nueva dirección de correo electrónico.";
           }
         strResp += "<br><br>";
-        strResp += "<a ui-sref='citizen.activation.form'>Activa tu Claveúnica</a>";
+        strResp += "Si el código llego correctamente<br><a ui-sref='citizen.activation.form'>Activa tu Claveúnica</a>";
         break;
       case 17:
         strResp = "Metodo de recuperacion diponible <(1,2)>  (Recovery)";
