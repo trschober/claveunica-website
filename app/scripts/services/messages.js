@@ -2,7 +2,7 @@
 
 function Messages() {
 
-  this.response = function (code) {
+  this.response = function (code, param) {
     var strResp = "";
 
     switch(code) {
@@ -48,7 +48,15 @@ function Messages() {
         strResp = "Informacion del usuario actualizada (Userinfo)";
         break;
       case 16:
-        strResp = "Codigo de activación enviado a <> (Recovery)";
+        strResp = "Codigo de activación enviado a <b>"+param+"</b>";
+        strResp += "<br><br>";
+          if( param.search("@") == -1 ){
+            strResp += "Si el número al que se envió el Código de Activación ya no esta vigente puedes actualizar tus datos en tu perfil de Claveúnica <a href='https://claveunica.gob.cl/perfil'>aquí</a>";
+          }else{
+            strResp += "Si el email al que se envió el Código de Activación ya no esta vigente puedes actualizar tus datos en tu perfil de Claveúnica <a href='https://claveunica.gob.cl/perfil'>aquí</a>. Si no tienes acceso deberas ir nuevamente a alguno de las <a href='https://claveunica.gob.cl/oficinas' target='_blank'>oficinas</a>  que entregan códigos de activación y precisar tu nueva dirección de correo electrónico.";
+          }
+        strResp += "<br><br>";
+        strResp += "<a ui-sref='citizen.activation.form'>Activa tu Claveúnica</a>";
         break;
       case 17:
         strResp = "Metodo de recuperacion diponible <(1,2)>  (Recovery)";

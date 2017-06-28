@@ -16,6 +16,10 @@
   border: none!important;
 }
 
+.example{
+  background-image: url('../images/ejemplo.png');
+}
+
 td pre, th pre {
   margin: 0;
   padding: 4px;

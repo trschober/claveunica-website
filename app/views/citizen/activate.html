@@ -15,7 +15,7 @@
 
           <div class="form-group" show-errors>
             <input ng-model="user.numero" name="run" class="form-control" placeholder="RUN" required validate-rut>
-            <small>Ejemplo: 11.111.111-1</small>
+            <p style="padding: 2px; margin: 1px; text-align: justify;">Ejemplo: 11.111.111-1</p>
             <p ng-messages="form.run.$error" ng-if="form.run.$touched" class="text-danger">
               <span ng-message="required">Debes completar esta información</span>
               <span ng-message="validateRut">El RUN no es válido</span>
@@ -26,6 +26,9 @@
             <input ng-model="user.code_activation" name="code" class="form-control" placeholder="Código de activación" required>
             <p ng-messages="form.code.$error" ng-if="form.code.$touched" class="text-danger">
               <span ng-message="required">Debes completar esta información</span>
+            </p>
+            <p style="padding: 2px; margin: 1px; text-align: justify;">
+            Si el <b>código de activación</b> es invalido o esta bloqueado puedes solicitar un nuevo <a ui-sref="citizen.recovery.form">aquí</a>
             </p>
           </div>
 
@@ -54,7 +57,7 @@
         <br>
         <br>
         A continuación un <strong>ejemplo</strong> del documento que contiene el código de activación:</p>
-          <div class="tarjeta">
+          <div class="tarjeta example">
             <p class="text-center"><strong>Servicio de Registro Civil e Identificación</strong></p>
             <p class="pull-right"><strong>Nro. Atención: 123456</strong></p>
             <p class="text-center bajo"><strong>Comprobante</strong></p>

@@ -46,11 +46,10 @@
             <div class="row" ng-switch="apiError" ng-if="apiError">
               <div class="col-md-offset-2 col-md-8 col-md-offset-2">
                 <div class="pass-box text-center">
-                  <div class="alert alert-success" ng-switch-when="200">
-                    <p>{{ message }}</p>
-                    <br> <a ui-sref="citizen.activation.form">Activa tu Claveúnica</a>
+                  <div class="alert alert-success">
+                    <p ng-bind-html="message"></p>
+                    <br> 
                   </div>
-                  <span class="alert alert-danger" ng-switch-default>{{ message }}</span>
                 </div>
               </div>
             </div>

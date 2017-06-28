@@ -2,7 +2,7 @@
 
 var app = angular.module('claveunica');
 
-app.controller('RecoveryController', function ($scope, Api) {
+app.controller('RecoveryController', function ($scope, Api, Messages) {
   'ngInject';
 
   $scope.humanOk = false;
@@ -10,11 +10,11 @@ app.controller('RecoveryController', function ($scope, Api) {
 
   $scope.sendRecovery = function (method) {
     return Api.sendRecovery($scope.run, method)
-      .then(function (response) {
+      .then(function (res) {
         $scope.recoveryOk = true;
         $scope.recoveryMethod = method;
-        $scope.apiError = response.status;
-        $scope.message = response.data.message;
+        $scope.apiError = res.data.status;
+        $scope.message = Messages.response(res.data.code, res.data.params[0]);
         /* eliminar token de recuperacion */
         localStorage.removeItem('token');
       })
