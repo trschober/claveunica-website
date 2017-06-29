@@ -32,6 +32,7 @@ app.controller('RecoveryController', function ($scope, Api, Messages) {
   };
 
   $scope.loadMethods = function (run) {
+    localStorage.removeItem('token');
     return Api.recoveryOptions(run) 
     .then(function (response) {
       localStorage.setItem('token', response.data.token);
@@ -44,8 +45,8 @@ app.controller('RecoveryController', function ($scope, Api, Messages) {
       $scope.methods = methods;
     })
     .catch(function (response) {
-      $scope.apiError = response.status;
-      $scope.message = response.data.error;
+      $scope.apiError = response.data.status;
+      $scope.message = Messages.response(500, '');
     })
       ;
   };

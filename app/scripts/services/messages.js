@@ -56,7 +56,7 @@ function Messages() {
             strResp += "Si el mail es incorrecto o no esta vigente puedes corregirlo en tu <a href='https://claveunica.gob.cl/perfil'>perfil</a>. Si no tienes acceso, debes solicitar un nuevo código en la <a href='https://claveunica.gob.cl/oficinas' target='_blank'>oficina</a> más cercana indicando claramente la nueva dirección de correo electrónico.";
           }
         strResp += "<br><br>";
-        strResp += "Si el código llego correctamente<br><a ui-sref='citizen.activation.form'>Activa tu Claveúnica</a>";
+        strResp += "Si el código llego correctamente<br><a href='https://claveunica.gob.cl/activar'>Activa tu Claveúnica</a>";
         break;
       case 17:
         strResp = "Metodo de recuperacion diponible <(1,2)>  (Recovery)";
@@ -142,6 +142,11 @@ function Messages() {
         break;
       case 57:
         strResp = "Usuario no tiene este metodo de recuperación";
+        break;
+      case 500:
+        strResp = "No se encontró información asociada al ciudadano.";
+          strResp += "<br><br>";
+          strResp += "Si nunca haz solicitado un código de activación, puedes hacerlo en la <a target='_blank' href='https://claveunica.gob.cl/oficinas'>oficina</a> de Ips o Registro Civil más cercana.";
         break;
       default:
         strResp = "Ha ocurrido un error. Por favor intente nuevamente";
