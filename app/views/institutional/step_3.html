@@ -1,10 +1,9 @@
 <h4>Paso 3</h4>
 <h3>Confirmar el Token de estado de anti-falsificación</h3>
 <div class="description">
-  <p>La respuesta que se obtiene del <strong><em>Paso 2</em></strong> es enviada a la URI de Redirección que especificó en la solicitud. Un respuesta ejemplo (siguiendo el ejemplo del <strong><em>Paso 2</em></strong>) es:</p>
+  <p>La respuesta que se obtiene del <b>Paso 2</b> es enviada a la URI de Redirección indicada como <b>redirect_uri</b>. Continuando con el ejemplo, lo obtenido sería algo así/p>
 
   <code><strong><em>https://example.com/?code=5fb3b172913448acadce6b011af1e75e&amp;state=abcdefgh</em>&gt;</strong></code>
 
-  <p>De acá rescatamos dos parámetros importantes: <strong>state</strong> y <strong>code</strong>.</p>
-  <p>En tu aplicación, debes confirmar que el <strong>state</strong> que se recibió de ClaveÚnica coincide con el <strong>Token de sesión</strong> creado en el <strong><em>Paso 1</em></strong>. Esta verificación de ida y vuelta ayuda a garantizar que es un ciudadano y no un atacante que está haciendo la solicitud.</p>
+  <p>En tu aplicación, debes corroborar que el <b>state</b> que se recibió de Claveúnica coincide con el <b>token</b> de sesión creado en el <b>Paso 1</b>. Esta verificación de <i>ida y vuelta</i> ayuda a garantizar que es un ciudadano y no un atacante que está haciendo la solicitud.</p>
 </div>

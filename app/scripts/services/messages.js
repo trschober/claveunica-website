@@ -29,7 +29,7 @@ function Messages() {
         strResp = "Token is invalid"
         break;
       case 8:
-        strResp = "User not allowed to perform this action *"
+        strResp = "El usuario no tiene permisos para realizar esta acción."
         break;
       case 9:
         strResp = "Service temporarily unavailable *"
@@ -143,10 +143,10 @@ function Messages() {
       case 57:
         strResp = "Usuario no tiene este metodo de recuperación";
         break;
-      case 500:
+      case 70:
         strResp = "No se encontró información asociada al ciudadano.";
           strResp += "<br><br>";
-          strResp += "Si nunca haz solicitado un código de activación, puedes hacerlo en la <a target='_blank' href='https://claveunica.gob.cl/oficinas'>oficina</a> de Ips o Registro Civil más cercana.";
+          strResp += "Si nunca ha solicitado un código de activación, puede hacerlo en la <a target='_blank' href='https://claveunica.gob.cl/oficinas'>oficina</a> de Ips o Registro Civil más cercana.";
         break;
       default:
         strResp = "Ha ocurrido un error. Por favor intente nuevamente";

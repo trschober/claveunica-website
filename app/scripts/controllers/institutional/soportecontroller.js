@@ -88,10 +88,12 @@ app.controller('SoporteController', function ($scope, Api, Messages) {
 					$scope.ciudadano_intentos = data_user.failed_login.number_attemps;
 					$scope.ciudadano_intentos_fecha = fecha_primer_fallido;
 				}else{
-					$scope.error = Messages.response(data.code);
+					$scope.error = Messages.response(data.data.code);
+					$scope.resutl = Messages.response(data.data.code);
 				}
-		    }, function () {
-		        $scope.error = Messages.response(data.code);
+		    }, function (data) {
+		        $scope.error = Messages.response(data.data.code);
+		        $scope.resutl = Messages.response(data.data.code);
 		    });		
 		}
 	};

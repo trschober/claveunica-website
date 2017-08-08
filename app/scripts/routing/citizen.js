@@ -12,6 +12,7 @@ function RouterCiudadano($stateProvider) {
       .state('citizen.home', {
           url: '',
           templateUrl: 'views/citizen/home.html',
+          controller: 'HomeController',
           data: { pageTitle: 'Inicio' }
       })
       .state('citizen.login', {

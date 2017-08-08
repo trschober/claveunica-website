@@ -21,7 +21,7 @@ app.controller('RecoveryController', function ($scope, Api, Messages) {
       .catch(function (error) {
         $scope.recoveryOk = false;
         $scope.apiError = error.status;
-        $scope.message = error.data.error;
+        $scope.message = Messages.response(500, ''); /*error.data.error;*/
       })
     ;
   };
