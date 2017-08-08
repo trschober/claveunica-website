@@ -1,7 +1,7 @@
 <h4>Paso 2</h4>
 <h3>Enviar una solicitud de autenticación al servicio de ClaveÚnica</h3>
 
-<p>El siguiente paso es formar una solicitud <strong>GET</strong> vía <strong>HTTPS</strong> con los parámetros adecuados en la <strong>URI</strong>. Debe usar en todo el momento el protocolo <strong>HTTPS</strong>. El protocolo <strong>HTTP</strong> no está permitido, debido a que la información viaja en texto plano.</p>
+<p>El siguiente paso es formar una solicitud <b>GET</b> vía <b>HTTPS</b> con los parámetros adecuados en la <b>URI</b>. Debes usar en todo el momento el protocolo <b>HTTPS</b>. El protocolo <b>HTTP</b> no está permitido, debido a que la información viaja en texto plano.</p>
 <p>La <strong>URI</strong> donde debe ser enviada la solicitud <strong>GET</strong> es:</p>
 
 <code><strong>https://accounts.claveunica.gob.cl/openid/authorize/</strong></code>
@@ -10,36 +10,27 @@
 
 <code>
   <ul class="clave">
-    <li><strong>client_id:</strong> Este parámetro es proporcionado por medio de una solicitud a ClaveÚnica descrita en el paso : <a href="/documentacion/solicitud">Solicitar ClaveÚnica</a>.</li>
-    <li><strong>response_type:</strong> Este parámetro debe ser siempre code, esto solo indica el tipo de flujo de OpenID Connect.</li>
-    <li><strong>scope:</strong> En este parámetro es obligatorio poner openid como mínimo. En el caso que se requiera además de autenticar a una persona obtener información sobre ella, se aceptan por el momento las siguientes opciones, dependiendo el tipo de solicitud por parte de la Institución solicitante
-      <ul>
-        <li>Etapa de Producción
-          <ul>
-            <li>Para obtener el run y el nombre completo debe ir: <strong><em>openid run name</em></strong></li>
-          </ul>
-          <ul>
-            <li><strong>redirect_uri:</strong> En este parámetro debe ir la URI (<strong>codificada en formato URL</strong>) de tu aplicación que interactuara con ClaveÚnica. Esta recibirá la respuesta por parte de ClaveÚnica.</li>
-            <li><strong>state:</strong> En este parámetro debe ir un Token único de sesión como fue indicado en el <strong><em>Paso 1</em></strong>.</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+    <li><strong>client_id:</strong> Este parámetro se obtiene al <a href="https://claveunica.gob.cl/institucional/solicitud-activacion">Activar la Institución</a>.</li>
+    <li><strong>response_type:</strong> Este parámetro es parte de la lógica utilizada por OpenID Connect y siempre debe ser <b>code</b>.</li>
+    <li><strong>scope:</strong> Este parámetro permite obtener la información del ciudadano (run y nombre completo) y debe ser <b>openid run name</b>.</li>
+    <li><strong>redirect_uri:</strong> En este parámetro debe ir la URI (<b>codificada en formato URL</b>) de tu aplicación que interactuará con Claveúnica. Esta recibirá la respuesta por parte de Claveúnica.
+.</li>
+    <li><strong>state:</strong> En este parámetro debe ir un Token único de sesión (revisar Paso 1).</li>
   </ul>
 </code>
 
-<p>Para ejemplificar este paso, aquí dejaremos una URI de ejemplo, con los siguientes parámetros:</p>
+<p>Parámetros de Ejemplo:</p>
 <code>
   <ul class="clave">
     <li><strong>client_id:</strong> 123</li>
     <li><strong>response_type:</strong> code</li>
     <li><strong>scope:</strong> openid run name</li>
-    <li><strong>redirect_uri:</strong> https://example.com</li>
+    <li><strong>redirect_uri:</strong> https://example.com (debe ir encodeada)</li>
     <li><strong>state:</strong> abcdefgh</li>
-    <li><strong>URI:</strong> https://accounts.claveunica.gob.cl/openid/authorize?client_id=123&amp;redirect_uri=https://example.com&amp;response_type=code&amp;scope=openid nombre&amp;state=abcdefgh</li>
+    <li><br><strong>URI:</strong> https://accounts.claveunica.gob.cl/openid/authorize?client_id=123&amp;redirect_uri=https%3A%2F%2Fexample.com&amp;response_type=code&amp;scope=openid run nombre&amp;state=abcdefgh</li>
   </ul>
 </code>
-<p><strong>NOTA:</strong> En la etapa de <strong>producción</strong> se autenticará utilizando ClaveÚnica. Para la etapa de <strong>testing</strong> se pueden utilizar las siguientes credenciales:</p>
+<p>Credenciales para Testing (Sandbox):</p>
 <code>
 <ul>
   <li>RUN: 44.444.444-4, contraseña: "testing"</li>

@@ -16,6 +16,10 @@
   border: none!important;
 }
 
+.example{
+  background-image: url('../images/ejemplo.png');
+}
+
 td pre, th pre {
   margin: 0;
   padding: 4px;
@@ -87,17 +91,19 @@ code {
 
 .barra-superior{background: #0056a8;}
 .barra-superior .navbar-nav>li>a{
-  border-bottom: 0px;
+  background-color: #0056a8;
+  /*border-bottom: 0px;*/
+  border: none !important;
   color: #fff;
   height: 30px;
   padding-top: 5px;
   text-shadow: 0px;
-  border-right: 1px solid #01417d;
+  /*border-right: 1px solid #01417d;*/
 }
 
 .barra-superior .navbar-nav>li>a:hover,
 .barra-superior .navbar-nav>li>a.active{
-  background-color: #01417d;
+  background-color: #01417d !important;
 }
 
 header .container{  position: relative;}
@@ -720,7 +726,7 @@ footer.footer-gobcl .top .listas .lista li {list-style: none;}
   #bs-navbar .dropdown-menu li{background: #fff; font-size: 16px;border-bottom:1px solid #ccc; text-align: center; list-style-type: none}
   /*#bs-navbar li {padding: 0; border:0;}*/
   #bs-navbar li a{background: #fff; font-size: 16px;border-bottom:1px solid #ccc; text-align: center; list-style-type: none;}
-  #bs-navbar li.active a{background-image:none; background: #0086d4; color:#fff; text-shadow: none}
+  #bs-navbar li.active a{background-image:none; background-color: #0086d4 !important; color:#fff; text-shadow: none}
   header .navbar-nav > li:first-child a{border:0;}
   header .navbar-nav > li a{border:0;}
   .barra-superior .container {padding: 0;}

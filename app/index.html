@@ -1,13 +1,13 @@
 <!doctype html>
 <html ng-app="claveunica">
-<head>
+<head> 
     <meta charset="utf-8">
     <title state-title pattern="%s | Claveúnica"></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <meta name="auth-endpoint" content="https://accounts.claveunica.gob.cl/openid/authorize">
-    <meta name="api-endpoint" content="https://api.claveunica.gob.cl/api/v1" />
+    <meta name="api-endpoint" content="https://portal.claveunica.gob.cl/api/v1" />
+    <!-- <meta name="api-endpoint" content="https://login.claveunica.gob.cl/api/v1" /> -->
 
     <meta name="recaptcha-key" content="6LfbZg0UAAAAAOWpXLNcLsXhUfNpu-uDPzim_72N" />
     <meta name="gmaps-key" content="AIzaSyDJCJ2OTFunxi4w9K4uk4TDdWyEHSW-ca4" />
@@ -85,17 +85,21 @@
     <script src="scripts/services/session.js"></script>
     <script src="scripts/services/geo.js"></script>
     <script src="scripts/services/apiclient.js"></script>
+    <script src="scripts/services/messages.js"></script>
     <script src="scripts/components/dashboardchart.js"></script>
     <script src="scripts/components/sitefooter.js"></script>
     <script src="scripts/components/siteheader.js"></script>
     <script src="scripts/components/userform.js"></script>
+    <script src="scripts/components/userloginform.js"></script>
     <script src="scripts/components/userbutton.js"></script>
+    <script src="scripts/controllers/citizen/accesscontroller.js"></script>
     <script src="scripts/controllers/citizen/activatecontroller.js"></script>
     <script src="scripts/controllers/citizen/activateminicontroller.js"></script>
     <script src="scripts/controllers/citizen/activitycontroller.js"></script>
     <script src="scripts/controllers/citizen/configcontroller.js"></script>
     <script src="scripts/controllers/citizen/configminicontroller.js"></script>
     <script src="scripts/controllers/citizen/faqscontroller.js"></script>
+    <script src="scripts/controllers/citizen/homecontroller.js"></script>
     <script src="scripts/controllers/citizen/officescontroller.js"></script>
     <script src="scripts/controllers/citizen/profilecontroller.js"></script>
     <script src="scripts/controllers/citizen/recoverycontroller.js"></script>

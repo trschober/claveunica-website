@@ -12,7 +12,22 @@ function RouterCiudadano($stateProvider) {
       .state('citizen.home', {
           url: '',
           templateUrl: 'views/citizen/home.html',
+          controller: 'HomeController',
           data: { pageTitle: 'Inicio' }
+      })
+      .state('citizen.login', {
+          // abstract: true,
+          url: 'acceder',
+          templateUrl: 'views/citizen/login.html',
+          controller: 'AccessController',
+          data: { pageTitle: 'Acceder' }
+          // template: '<ui-view/>'
+      })
+      .state('citizen.login.form', {
+          url: '',
+          templateUrl: 'views/citizen/login.html',
+          controller: 'AccessController',
+          data: { pageTitle: 'Acceder' }
       })
       .state('citizen.about', {
           url: 'que-es',

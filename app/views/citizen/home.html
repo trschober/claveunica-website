@@ -17,17 +17,45 @@
   </div>
 </div>
 
-<div class="container video">
+<div class="container video" style="margin-bottom: 15px;">
   <div class="row">
     <div class="col-md-5 menu-left">
       <div class="contenido">
         <h2>Qué es la Claveúnica</h2>
-        <p>Es una contraseña única para acceder a todos los servicios del Estado, de manera fácil y segura ya que es como tu carnét de identidad digital</p>
+        <p>Es una contraseña única para acceder a todos los servicios del Estado, de manera fácil y segura ya que es como tu carnét de identidad digital.</p>
       </div>
     </div>
     <div class="col-md-7 menu-right">
       <div>
         <iframe src="https://player.vimeo.com/video/195798539?color=ffffff&title=0&byline=0&portrait=0" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12" id="metrics">
+      <div class="tarjeta" style="height: 110px !important; border-bottom: none !important;">
+        <h2 class="col-md-3 text-left">Actualmente contamos con</h2>
+        <div class="col-md-9 row">
+          <div class="col-md-4 col-sm-4">
+            <span class="number" style="color: #9e9e9e !important">{{ data.numberUsers | formatPrice }}</span>
+            <span class="description">Ciudadanos activos</span>
+          </div>
+          <div class="col-md-2 col-sm-2">
+            <span class="number">{{ data.numberInstitutions | formatPrice }}</span>
+            <span class="description">Instituciones</span>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <span class="number">{{ data.numberApps | formatPrice }}</span>
+            <span class="description">Trámites</span>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <span class="number">{{ data.numberTransactionsDay | formatPrice }}</span>
+            <span class="description">Transacciones hoy</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

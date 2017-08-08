@@ -7,6 +7,8 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.meta = angular.element('meta[name=api-endpoint]');
   this.endpoint = _.trimEnd(this.meta.attr('content'), '/');
 
+  this.endpoint_info = 'https://login.claveunica.gob.cl';
+
   this.URL = {
     activate: '/codes',
     check: '/accounts/check',
@@ -21,10 +23,12 @@ function Api($http, $q, $base64, $cacheFactory) {
     faqs: '/front/faq-users',
     metrics: '/front/institutions/metrics',
     request: '/front/institutions/form',
-    credentials: '/front/institutions/form/download/{transactionId}',
+    credentials: '/front/institutions/form/download',
     charts: '/front/institutions/{institution}/charts/{id}',
-    institution: '/accounts/institution/check',
-    citizendata: '/support/{number_run}'
+    // institution: '/accounts/institution/check',
+    institution: '/accounts/check',
+    citizendata: '/support/{number_run}',
+    citizendataMethod: '/support/{number_run}/recovery/{method}'
   };
 
   $http.setEndpoint(this.endpoint);
@@ -35,23 +39,35 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.getMetrics = function () {
     return $http.get($http.url(this.URL.metrics)).then(function (res) {
-      return res.data;
+      return res.data.object;
     });
   };
 
   this.check = function () {
-    return $http.get($http.url(this.URL.check)).then(function (res) {
-      return res.data.numero;
-    }.bind(this));
+      return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
+        return res.data.object.RolUnico.numero;
+      }.bind(this));
   };
 
-  this.getCitizenData = function(run) {
-    return $http.get($http.url(this.URL.citizendata, this.parseRutNumber(run) )).then(function (res) {
+  this.authenticateUser = function(user, pass){
+    return $http.post(this.endpoint_info.concat("/accounts/login"), {username: user, password: $base64.encode(pass) }).then(function (res) {
       return res.data;
     });
   }
 
-  this.activateUser = function (user) {
+  this.sendRecoveryAccount = function(run, method){
+    return $http.post($http.url(this.URL.citizendataMethod, this.parseRutNumber(run), method)).then(function (res) {
+      return res.data;
+    });
+  }
+
+  this.getCitizenData = function(run) {
+    return $http.get($http.url(this.URL.citizendata, this.parseRutNumber(run))).then(function (res) {
+      return res.data;
+    });
+  }
+
+  this.activateUser = function (user) { 
     return $http.post($http.url(this.URL.activate), {
       numero: this.parseRutNumber(user.numero),
       code_activation: $base64.encode(user.code_activation)
@@ -65,7 +81,7 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.userInfo = function (run) {
-    return $http.get($http.url(this.URL.account, run)).then(function (res) {
+    return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
       return res.data;
     });
   };
@@ -84,17 +100,19 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.getActivity = function (run) {
     return $http.get($http.url(this.URL.stats, run)).then(function (res) {
-      return res.data.lastLog;
+      return res.data.object.lastLog;
     });
   };
 
   this.logout = function () {
-    return $http.delete($http.url(this.URL.logout));
+    return $http.delete(this.endpoint_info.concat("/accounts/logout")).then(function (res) {
+      localStorage.removeItem('token');
+    });; 
   };
 
   this.getFaqs = function () {
     return $http.get($http.url(this.URL.faqs), { cache: true }).then(function (res) {
-      return res.data.ciudadanosFaq;
+      return res.data.object.faq;
     });
   };
 
@@ -116,7 +134,7 @@ function Api($http, $q, $base64, $cacheFactory) {
         .then(function (resp) {
           var codes = [];
 
-          angular.forEach(resp.data['trámites'].institucion, function (e) {
+          angular.forEach(resp.data.object.institucion, function (e) {
             codes.push($http.get(endpoint + e, { cache: true }).catch(angular.noop));
           });
 
@@ -141,7 +159,6 @@ function Api($http, $q, $base64, $cacheFactory) {
     if (null === service) {
       return this.getRandomTasks(120);
     }
-
     return $http.get($http.url(this.URL.tasks + '?institucion={id}', service.codigo));
   };
 
@@ -152,7 +169,7 @@ function Api($http, $q, $base64, $cacheFactory) {
     function processRegion(res) {
       var codes = [];
 
-      angular.forEach(res.data.lugares.region, function (e) {
+      angular.forEach(res.data.object.region, function (e) {
         if (typeof e === "number") {
           return;
         }
@@ -188,7 +205,7 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.getCitiesCodes = function () {
     return $http.get($http.url(this.URL.offices + '?distinct=comuna'), { cache: true })
       .then(function(res) {
-        return res.data.lugares.comuna;
+        return res.data.object.comuna;
       })
     ;
   };
@@ -230,7 +247,7 @@ function Api($http, $q, $base64, $cacheFactory) {
     .then(function (response) {
       var codes = [];
 
-      angular.forEach(response.data.lugares, function (e) {
+      angular.forEach(response.data.object, function (e) {
         codes.push($http.get('https://apis.digital.gob.cl/misc/instituciones/' + e.institucion)
           .then(function (res) {
             e.institution_name = res.data._source.nombre;
@@ -253,8 +270,20 @@ function Api($http, $q, $base64, $cacheFactory) {
     return $http.post($http.url(this.URL.request), request);
   };
 
-  this.getCredentialsFileLink = function(transactionId) {
-    return $http.url(this.URL.credentials, transactionId);
+  this.getCredentialsFileLink = function() {
+    return $http.url(this.URL.credentials);
+  };
+
+  this.downloadFileAjax = function(){
+    return $http.get($http.url(this.URL.credentials)).then(function(res){
+        var blob = new Blob([res.data], { type:"text/plain;charset=utf-8;" });     
+        var downloadLink = angular.element('<a></a>');
+        downloadLink.attr('href',window.URL.createObjectURL(blob));
+        downloadLink.attr('download', 'credenciales.csv');
+        downloadLink[0].click();
+
+      return res.data;
+    });
   };
 
   this.getChartsByPeriod = function (institution, chart, period) {

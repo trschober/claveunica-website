@@ -2,7 +2,7 @@
 
 var app = angular.module('claveunica');
 
-app.controller('RecoveryController', function ($scope, Api) {
+app.controller('RecoveryController', function ($scope, Api, Messages) {
   'ngInject';
 
   $scope.humanOk = false;
@@ -10,16 +10,18 @@ app.controller('RecoveryController', function ($scope, Api) {
 
   $scope.sendRecovery = function (method) {
     return Api.sendRecovery($scope.run, method)
-      .then(function (response) {
+      .then(function (res) {
         $scope.recoveryOk = true;
         $scope.recoveryMethod = method;
-        $scope.apiError = response.status;
-        $scope.message = response.data.message;
+        $scope.apiError = res.data.status;
+        $scope.message = Messages.response(res.data.code, res.data.params[0]);
+        /* eliminar token de recuperacion */
+        localStorage.removeItem('token');
       })
       .catch(function (error) {
         $scope.recoveryOk = false;
         $scope.apiError = error.status;
-        $scope.message = error.data.error;
+        $scope.message = Messages.response(500, ''); /*error.data.error;*/
       })
     ;
   };
@@ -30,9 +32,11 @@ app.controller('RecoveryController', function ($scope, Api) {
   };
 
   $scope.loadMethods = function (run) {
-    return Api.recoveryOptions(run)
+    localStorage.removeItem('token');
+    return Api.recoveryOptions(run) 
     .then(function (response) {
-      var methods = response.data.methods;
+      localStorage.setItem('token', response.data.token);
+      var methods = response.data.object.methods;
 
       if (methods.length === 1) {
         return $scope.sendRecovery(methods[0]);
@@ -41,8 +45,8 @@ app.controller('RecoveryController', function ($scope, Api) {
       $scope.methods = methods;
     })
     .catch(function (response) {
-      $scope.apiError = response.status;
-      $scope.message = response.data.error;
+      $scope.apiError = response.data.status;
+      $scope.message = Messages.response(500, '');
     })
       ;
   };
