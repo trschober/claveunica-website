@@ -1,6 +1,6 @@
 'use strict';
 
-function session(Api, $cacheFactory, $storage, $q, $window) {
+function session(Api, $cacheFactory, $storage, $q, $window, Messages, $state) {
     'ngInject';
 
     this.user = null;
@@ -17,29 +17,27 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
         return defer.promise;
     };
 
-    function authorize() {
-        var query = ['?'];
-        var meta = angular.element('meta[name=auth-endpoint]');
-        var endpoint = _.trimEnd(meta.attr('content'), '/');
-        var loc = window.location;
-
-        if (!loc.origin) {
-          loc.origin = loc.protocol + "//" + loc.hostname + (loc.port ? ':' + loc.port: '');
+    function authorize(pre_url) {
+        var temp_url = 'acceder';
+        switch(pre_url) {
+            case 'citizen.activity':
+                temp_url = 'actividad';
+                break;
+            case 'citizen.profile':
+                temp_url = 'perfil';
+                break;
+            case 'institutional.soporte':
+                temp_url = 'institucional/soporte';
+                break;
+            case 'institutional.request':
+                temp_url = 'institucional/solicitud-activacion';
+                break;
+            default:
+                temp_url = 'acceder';
         }
 
-        var params = {
-          scope: 'openid run',
-          client_id: '123',
-          redirect_uri: window.encodeURIComponent(loc.origin),
-          state: (Date.now() + '' + Math.random()).replace('.', ''),
-          response_type: 'code'
-        };
-
-        for (var k in params) {
-          query.push(k + '=' + params[k]);
-        }
-
-        window.location.replace(endpoint + query.join('&'));
+        localStorage.setItem('pre_url', temp_url);
+        $state.go('citizen.login');
     }
 
     this.check = function () {
@@ -65,6 +63,7 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
                 $storage.clear();
                 $cacheFactory.get('$http').removeAll();
                 self.user = null;
+                localStorage.removeItem('token');
                 defer.resolve(null);
             })
         ;
@@ -78,7 +77,7 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
         }
 
         if (null === $storage.get('user-data')) {
-            authorize();
+            authorize(redirectTo);
         } else {
             window.location.reload();
         }
@@ -87,7 +86,9 @@ function session(Api, $cacheFactory, $storage, $q, $window) {
     function clearAll() {
         $storage.clear();
         $cacheFactory.get('$http').removeAll();
-        $window.location.reload();
+        // $window.location.reload();
+        localStorage.removeItem('token');
+        window.location = "/";
     }
 
     this.logout = function () {

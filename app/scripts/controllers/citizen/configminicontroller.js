@@ -12,6 +12,7 @@ function ConfigminiController($scope, $stateParams, Api) {
         $scope.result = 'success';
         $scope.profile = profile;
         $scope.fullname = fullname;
+        localStorage.removeItem('token');
       })
       .catch(function () {
         $scope.result = 'error';

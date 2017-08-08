@@ -1,6 +1,6 @@
 <section id="how-it-works">
   <div class="container">
-    <h1>Soporte Ciudadanos</h1>
+    <h1>Soporte Ciudadanos</h1> 
     <div class="row">
       <div class="col-md-12">
         <form ng-submit="submit()" ng-controller="SoporteController" class="clearfix">
@@ -17,16 +17,10 @@
 			</p>
 		
 
-		<div ng-show="result == 'error1'" id="error-usuario-no-existe" class="alert alert-danger" role="alert" style="margin-top: 15px !important;">
+		<div ng-show="error != ''" id="error-usuario-no-existe" class="alert alert-danger" role="alert" style="margin-top: 15px !important;">
 		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		  <span class="sr-only">Error:</span>
-		  El usuario no existe en la Base de Datos
-		</div>
-
-		<div ng-show="result == 'error2'" id="error-sin-permisos" class="alert alert-danger" role="alert" style="margin-top: 15px !important;">
-		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		  <span class="sr-only">Error:</span>
-		  Favor intentelo nuevamente
+		  <p ng-bind-html="resutl"></p>
 		</div>
 
 		<div class="jumbotron" ng-show="result == 'resultado'">
@@ -57,16 +51,22 @@
 					<a href="#" class="btn btn-info btn-lg" style="margin-top: 31px" ng-click="limpiarForm()" role="button">Limpiar</a>
 				</div>
 				<div class="pull-right">
-					<label ng-if="ciudadano_email" class="radio-inline"><input type="radio" name="optradio" value="1">EMAIL</label>
-					<label ng-if="ciudadano_telefono" class="radio-inline"><input type="radio" name="optradio" value="2">SMS</label>
+					<label ng-if="ciudadano_email" class="radio-inline"><input type="radio" ng-model="request.optradio" ng-value="1">EMAIL</label>
+					<label ng-if="ciudadano_telefono" class="radio-inline"><input type="radio" ng-model="request.optradio" ng-value="2">SMS</label>
 					<br>
-					<a href="https://soporte.digital.gob.cl/scp/tickets.php" target="_blank" class="btn btn-primary btn-lg" style="margin-top: 10px" role="button">Enviar nuevo código de activación</a>
+					<button ng-disabled="!request.optradio" ng-click="sendRecoveryBySupport(request.optradio)" class="btn btn-primary btn-lg" style="margin-top: 10px" role="button">Enviar nuevo código de activación</button>
 				</div>
 			</div> 
 		</div>
 
+		<div ng-show="message" class="alert alert-info" role="alert" style="margin-top: 15px !important;">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  <span class="sr-only">Información:</span>
+		  <p ng-bind-html="message"></p>
+		</div>
+
 		<div class="jumbotron" style="text-align: right; text-decoration: underline;">
-			<a href="" target="_blank">CONTACTAR ADMINISTRADOR DE LA PLATAFORMA</a>
+			<a href="https://soporte.digital.gob.cl/scp/tickets.php" target="_blank">CONTACTAR ADMINISTRADOR DE LA PLATAFORMA</a>
 		</div>
 </form>
    	  </div>

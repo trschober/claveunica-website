@@ -14,20 +14,20 @@ function RouterInstitucional($stateProvider) {
           templateUrl: 'views/institutional/home.html',
           data: { pageTitle: 'Portal Institucional' }
       })
-      // .state('institutional.soporte', {
-      //     url: '/soporte',
-      //     templateUrl: 'views/institutional/soporte.html',
-      //     controller: 'SoporteController',
-      //     data: { pageTitle: 'Soporte' },
-      //     resolve: {
-      //         user: function (session) {
-      //             'ngInject';
-      //             session.getUser().catch(function () {
-      //                 session.login('institutional.soporte');
-      //             });
-      //         }
-      //     }
-      // })
+      .state('institutional.soporte', {
+          url: '/soporte',
+          templateUrl: 'views/institutional/soporte.html',
+          controller: 'SoporteController',
+          data: { pageTitle: 'Soporte' },
+          resolve: {
+              user: function (session) {
+                  'ngInject';
+                  session.getUser().catch(function () {
+                      session.login('institutional.soporte');
+                  });
+              }
+          }
+      })
       .state('institutional.request', {
           url: '/solicitud-activacion',
           templateUrl: 'views/institutional/request.html',

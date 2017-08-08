@@ -29,7 +29,7 @@
           </div>
 
           <div class="form-group" show-errors>
-            <input name="pct" type="tel" class="form-control" placeholder="Teléfono*" ng-model="request.phoneContactTec" ng-pattern="regex" required>
+            <input name="pct" type="tel" class="form-control" placeholder="Teléfono* (Ej. +56912345678)" ng-model="request.phoneContactTec" ng-pattern="regex" required>
             <p ng-messages="form.pct.$error" class="text-danger" ng-if="form.pct.$touched">
               <span ng-message="required">Este campo es obligatorio</span>
               <span ng-message="pattern">El número telefónico no es válido</span>
@@ -53,7 +53,7 @@
           </div>
 
           <div class="form-group" show-errors>
-            <input name="pca" type="tel" class="form-control" placeholder="Teléfono*" ng-model="request.phoneContactAdm" ng-pattern="regex" required>
+            <input name="pca" type="tel" class="form-control" placeholder="Teléfono* (Ej. +56912345678)" ng-model="request.phoneContactAdm" ng-pattern="regex" required>
             <p ng-messages="form.pca.$error" class="text-danger" ng-if="form.pca.$touched">
               <span ng-message="required">Este campo es obligatorio</span>
               <span ng-message="pattern">El número telefónico no es válido</span>
@@ -86,6 +86,7 @@
           <h3>URI's de redirección</h3>
           <div class="form-group" show-errors>
             <input name="prod" type="url" class="form-control" placeholder="Producción (Ejemplo: https://plagas.minagri.gob.cl/callback/claveunica)" ng-model="request.urlProd">
+            <p>La uri de producción debe estar bajo <b>https</b></p>
             <p ng-messages="form.prod.$error" class="text-danger" ng-if="form.prod.$touched">
               <span ng-message="url">La URL no es válida</span>
             </p>
@@ -100,6 +101,15 @@
           </div>
 
           <div class="form-group">
+            <h4>Paso a Producción</h4>
+            <p>Luego de presionar el botón activar, las credenciales de Testing quedarán operativas inmediatamente.</p>
+            <p>Para habilitar las credenciales de producción deberás cumplir los siguientes requisitos:</p>
+            <ul>
+              <li>La implementación productiva debe estar bajo <b>https</b>.</li>
+              <li>Se debe utilizar el <a href="https://github.com/e-gob/Ejemplos-OpenIDConnect-Clave-Unica/raw/master/Pack%20Botones.zip">botón</a> y texto de Claveúnica.</li>
+            </ul>
+            <p>Si cuentas con esto, debes contactarte con nosotros mediante este <a href="https://soporte.digital.gob.cl/open.php?topicId=20" taget="_blank">link</a> indicando el <b>client_id</b> de las credenciales de producción y luego de validar activaremos las credenciales para la utilización de run de ciudadanos.</p>
+            <hr>
             <h4>Condiciones de uso</h4>
             <p>El servicio de ClaveÚnica sólo se debe utilizar como mecanismo de validación de identidad de los ciudadanos para el acceso a servicios puestos a su disposición.</p>
             <p>Cumplir con las obligaciones de protección a la vida privada, en especial con las disposiciones contenidas en la Ley N° 19.628 sobre Protección de la Vida Privada.</p>
@@ -159,7 +169,7 @@
           </div>
 
           <h4>Tickets de soporte</h4>
-          <p>Puede solicitar soporte en <a href="https://soporte.digital.gob.cl/open.php?topicId=12" target="_blank">https://soporte.digital.gob.cl/open.php?topicId=12</a> indicando alguno de los siguientes identificadores en los detalles del problema:</p>
+          <p>Puede solicitar soporte en <a href="https://soporte.digital.gob.cl/open.php?topicId=12" target="_blank">aqu&iacute;</a> indicando alguno de los siguientes identificadores en los detalles del problema:</p>
           <table class="table table-condensed borderless">
             <tbody>
             <tr ng-show="data.ticketsId.appProduction">
@@ -176,9 +186,7 @@
         </div>
 
         <div class="modal-footer">
-          <a href="{{ downloadLink }}" class="btn btn-sm btn-success pull-left">
-            Descargar <i class="glyphicon glyphicon-download-alt"></i>
-          </a>
+          <a class="btn btn-sm btn-success pull-left" ng-click="downloadFile()" ng-href="{{ url }}">Descargar <i class="glyphicon glyphicon-download-alt"></i></a>
           <button class="btn btn-sm btn-primary pull-right" ng-click="dismissModal()">Aceptar</button>
         </div>
       </script>

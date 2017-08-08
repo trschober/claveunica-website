@@ -1,0 +1,169 @@
+<script>
+  $("footer").hide();
+  $(".barra-superior").hide();
+  $("#bs-navbar").hide();
+  $(".navbar").hide();
+</script>
+
+<style>
+
+body {
+    background: #eee !important;
+    font-family: arial,sans-serif helvetica !important;
+}
+
+#formClaveUnica {
+    position: relative !important;
+    background: #fff !important;
+    color: #656565 !important;
+    margin-top: 80px !important;
+    border-radius: 5px !important;
+}
+
+#formClaveUnica .logo {
+    text-align: center !important;
+}
+
+#formClaveUnica .logo img {
+    margin: 20px 0 !important;
+}
+
+#formClaveUnica .main label {
+    line-height: 48px !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+}
+
+#formClaveUnica .main input[type=text],#formClaveUnica .main input[type=password] {
+    font-size: 26px !important;
+    height: 48px !important;
+    line-height: 30px !important;
+    color: #656565 !important;
+    padding: 8px 16px !important;
+    border-radius: 5px !important;
+}
+
+#formClaveUnica .main input[type=text]::-webkit-input-placeholder,#formClaveUnica .main input[type=password]::-webkit-input-placeholder {
+    opacity: .4 !important;
+}
+
+#formClaveUnica .main input[type=text]::-moz-placeholder,#formClaveUnica .main input[type=password]::-moz-placeholder {
+    opacity: .4 !important;
+}
+
+#formClaveUnica .main input[type=text]:-ms-input-placeholder,#formClaveUnica .main input[type=password]:-ms-input-placeholder {
+    opacity: .4 !important;
+}
+
+#formClaveUnica .main .btn {
+    font-family: arial,sans-serif helvetica !important;
+    font-size: 22px !important;
+    font-weight: 400 !important;
+    padding: 10px 20px !important;
+    text-decoration: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius: 2px !important;
+    -moz-border-radius: 2px !important;
+    border-radius: 2px !important;
+    font-family: Helvetica,Arial,Sans-Serif !important;
+}
+
+#formClaveUnica .main .btn-primary {
+    color: #fff !important;
+    background: #0067ab !important;
+}
+
+.btn-primary:hover {
+    background: #0086d4 !important;
+    text-decoration: none !important;
+}
+
+#formClaveUnica .main ul {
+    padding-left: 15px !important;
+}
+
+#formClaveUnica .alert {
+    padding: 20px !important;
+    text-align: center !important;
+    border-color: #cdd5df !important;
+    border-radius: 0 !important;
+}
+
+#formClaveUnica .alert-info {
+    color: #656565 !important;
+}
+
+#formClaveUnica .alert-info .realm {
+    color: #037bb3 !important;
+}
+
+#formClaveUnica .ajaxLoader {
+    width: 80px !important;
+    background: #000 url(../img/ajax-loader.gif) 25px 16px no-repeat !important;
+    color: #fff !important;
+    border-radius: 5px !important;
+    position: absolute !important;
+    text-align: center !important;
+    padding-top: 55px !important;
+    padding-bottom: 5px !important;
+    visibility: hidden !important;
+    z-index: 100 !important;
+}
+
+@media (max-width: 767px) {
+    #formClaveUnica {
+        margin: 15px 0 !important;
+    }
+
+    #formClaveUnica .main {
+        margin: 0 15px !important;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    #formClaveUnica .main .btn {
+        padding: 10px !important;
+    }
+}
+
+@media only screen and (max-width : 320px) {
+    #formClaveUnica .main .btn {
+        padding: 10px !important;
+        font-size: 18px !important;
+    }
+
+    #formClaveUnica .main label {
+        font-size: 16px !important;
+    }
+}
+
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+
+        <div id="formClaveUnica" class="form-horizontal">
+            <form class="form-horizontal" name="form" style="background-color: white; margin-top: 80px; border-radius: 6px;">
+                <fieldset>    
+                    <div class="logo"><img src="images/logo.png" alt="ClaveÚnica" height="120"></div>      
+                    <div ng-hide="message" class="alert alert-info" style="background-color: #d9edf7; border: 1px solid transparent;">
+                        <span class="realm"></span>Portal ClaveÚnica requiere autenticación
+                    </div>
+                    <div id="error-message" style="text-align: center; color: #656565; border: 1px solid transparent; border-color: #cdd5df !important;" class="alert alert-danger" ng-show="message" ng-bind-html="message"></div>
+
+                    <user-login-form data="data" on-save="accessUser(user)"></user-login-form>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-88247730-1', 'claveunica.gob.cl');
+      ga('send', 'pageview');
+    </script>    
+    
+    </div>
+  </div>
+</div>

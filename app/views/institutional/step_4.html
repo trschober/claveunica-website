@@ -14,16 +14,16 @@
 
 <code>
   <ul class="clave">
-    <li><strong>client_id:</strong> Este parámetro es proporcionado por medio de una solicitud a ClaveÚnica descrita en el paso : <a href="/#/institucional/solicitud-activacion">Solicitar ClaveÚnica</a></li>
-    <li><strong>client_secret:</strong> Este parámetro es proporcionado por medio de una solicitud a ClaveÚnica descrita en el paso : <a href="/#/institucional/solicitud-activacion">Solicitar ClaveÚnica</a></li>
-    <li><strong>redirect_uri:</strong> En este parámetro debe  ir la URI de tu aplicación que interactuara con ClaveÚnica (este debe ser igual al Paso 2). Esta recibirá la respuesta por parte de ClaveÚnica</li>
-    <li><strong>grant_type:</strong> Este parámetro debe ser siempre authorization_code, esto solo indica el tipo de flujo de OpenID Connect</li>
+    <li><strong>client_id:</strong> Este parámetro se obtiene al <a href="https://claveunica.gob.cl/institucional/solicitud-activacion">Activar la Institución</a>.</li>
+    <li><strong>client_secret:</strong> Este parámetro se obtiene al <a href="https://claveunica.gob.cl/institucional/solicitud-activacion">Activar la Institución</a></li>
+    <li><strong>redirect_uri:</strong> En este parámetro debe ir la URI de tu aplicación (la misma del Paso 2).</li>
+    <li><strong>grant_type:</strong> Este parámetro es parte de la lógica utilizada por OpenID Connect y siempre debe ser <b>authorization_code</b>.</li>
     <li><strong>code:</strong> En este parámetro debe ir el código de acceso obtenido en el Paso 3.</li>
     <li><strong>state:</strong> En este parámetro debe ir el mismo Token único de sesión que fue indicado en el <strong><em>Paso 1</em></strong>.</li>
   </ul>
 </code>
 
-<p>Para ejemplificar este paso, aquí dejaremos una URI de ejemplo con el cuerpo POST (siguiendo el ejemplo del Paso 2).</p>
+<p>Continuando con el ejemplo iniciado en el <b>Paso 2</b>, la URI que se debe enviar vía <b>POST</b> seria:</p>
 
 <code>
 <em>

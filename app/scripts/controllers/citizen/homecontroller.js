@@ -1,6 +1,6 @@
 'use strict';
 
-function MetricsController($scope, Api, $interval) {
+function HomeController($scope, Api, $interval) {
     'ngInject';
 
     $scope.data = {
@@ -27,10 +27,6 @@ function MetricsController($scope, Api, $interval) {
 
     $scope.getMetrics();
 
-    // $interval(function() {
-    //     $scope.getMetrics();
-    // }, 2000);
-
     var intervalPromise = $interval(function () { $scope.getMetrics(); }, 2000);      
     $scope.$on('$destroy', function () { $interval.cancel(intervalPromise); });
 
@@ -38,5 +34,5 @@ function MetricsController($scope, Api, $interval) {
 
 angular
     .module('claveunica')
-    .controller('MetricsController', MetricsController)
+    .controller('HomeController', HomeController)
 ;

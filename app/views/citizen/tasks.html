@@ -16,7 +16,7 @@
               <select class="form-control"
                 ng-model="service"
                 ng-options="service as service.nombre for service in services"
-                ng-change="ctrl.changeService(service)" id="filter-by">
+                ng-change="changeService(service)" id="filter-by">
                 <option value="" selected>Todas las instituciones</option>
               </select>
             </div>
