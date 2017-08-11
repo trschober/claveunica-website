@@ -7,7 +7,7 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.meta = angular.element('meta[name=api-endpoint]');
   this.endpoint = _.trimEnd(this.meta.attr('content'), '/');
 
-  this.endpoint_info = this.endpoint;
+  this.endpoint_info = 'https://login.claveunica.gob.cl';
 
   this.URL = {
     activate: '/codes',
