@@ -11,6 +11,8 @@ app.controller('SoporteController', function ($scope, Api, Messages) {
     $scope.result = '';
     $scope.error = '';
     $scope.message = '';
+	$scope.token_recovery = '';
+	$scope.token_session = '';
 
     $scope.limpiarForm = function(){
 		$scope.result = '';
@@ -31,14 +33,37 @@ app.controller('SoporteController', function ($scope, Api, Messages) {
     };
 
     $scope.sendRecoveryBySupport = function(method_id){
+    	/* guardar token_session */
+    	$scope.token_session = localStorage.getItem('token');
+    	/* sobreescribir token = token_recovery */
+		localStorage.setItem('token', $scope.token_recovery);
+
     	Api.sendRecoveryAccount($scope.run, method_id).then(function (data) {
-    		$scope.message =  Messages.response(data.code);
+    		/* volver token = token_sesion */
+    		$scope.token_recovery = '';
+    		localStorage.setItem('token', $scope.token_session);
+    		$scope.token_session = '';
+    		$scope.message =  Messages.response(data.code, data.params[0]);
     	});
     }
 
     $scope.submit = function() {
+    	if( $scope.token_session != '' ){
+			localStorage.setItem('token', $scope.token_session);
+    	}
     	if ($scope.run) {
 			Api.getCitizenData($scope.run).then(function (data) {
+				/*obtener token de recuperacion*/
+				var clean_run = $scope.run.replace(".", "");
+				clean_run = clean_run.replace(".", "");
+				clean_run = clean_run.replace("-", "");
+				clean_run = clean_run.slice(0,-1);
+				$.ajax({
+				  url: "https://portal.claveunica.gob.cl/api/v1/users/"+clean_run+"/recovery"
+				}).done(function(data_recovery) {
+				  $scope.token_recovery = data_recovery.token;
+				});
+
 				if( data.status == "ok" ){
 					var fullname = '';
 					var data_user = data.object.user;

@@ -28,7 +28,7 @@ function Api($http, $q, $base64, $cacheFactory) {
     // institution: '/accounts/institution/check',
     institution: '/accounts/check',
     citizendata: '/support/{number_run}',
-    citizendataMethod: '/support/{number_run}/recovery/{method}'
+    citizendataMethod: '/users/{number_run}/recovery/{method}'
   };
 
   $http.setEndpoint(this.endpoint);

@@ -4,9 +4,6 @@ function AccessController($scope, $state, $location, Api, $http, session, Messag
     'ngInject';
 
     $scope.user = {};
-
-    console.log("4");
-
     $scope.accessUser = function (user) { 
         return Api.authenticateUser(user.run, user.password)
             .then(function (info){   
