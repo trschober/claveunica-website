@@ -4,7 +4,6 @@ function HttpInterceptor($cookies) {
     'ngInject';
 
     this.request = function (config) {
-        console.log("=>"+config.url+"<=");
         if (config.url.indexOf('https://apis.digital.gob.cl/misc/instituciones') > -1) {
             return config;
         } else {
