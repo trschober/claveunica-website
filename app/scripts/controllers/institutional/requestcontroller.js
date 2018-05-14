@@ -52,7 +52,19 @@ function RequestController($scope, $uibModal, Api, Messages) {
         return Api.requestCredentials($scope.request)
             .then($scope.onRequestSuccess)
             .catch(function (response) {
-                $scope.error = response.data.error;
+                // $scope.error = response.data.error;
+                if( response.data.params[0] == 'URL Sandbox'){
+                    $scope.error = 'La URL de Test no es válida';
+                }
+                if( response.data.params[0] == 'URL Prod'){
+                    $scope.error = 'La URL de Producción no es válida';
+                }
+                if( response.data.params[0] == 'URL Producción'){
+                    $scope.error = 'La URL de Producción no es válida';
+                }
+                if( response.data.params[0] == 'Descripción'){
+                    $scope.error = 'La Descripción no debe superar los 1000 carateres';   
+                }
             })
         ;
     };

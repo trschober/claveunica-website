@@ -28,6 +28,20 @@ function RouterInstitucional($stateProvider) {
               }
           }
       })
+      .state('institutional.agentes', {
+          url: '/agentes',
+          templateUrl: 'views/institutional/agentes.html',
+          controller: 'SoporteController',
+          data: { pageTitle: 'Agentes' },
+          resolve: {
+              user: function (session) {
+                  'ngInject';
+                  session.getUser().catch(function () {
+                      session.login('institutional.agentes');
+                  });
+              }
+          }
+      })
       .state('institutional.request', {
           url: '/solicitud-activacion',
           templateUrl: 'views/institutional/request.html',

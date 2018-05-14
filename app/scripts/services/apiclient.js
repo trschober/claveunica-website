@@ -7,7 +7,9 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.meta = angular.element('meta[name=api-endpoint]');
   this.endpoint = _.trimEnd(this.meta.attr('content'), '/');
 
-  this.endpoint_info = 'https://login.claveunica.gob.cl';
+  this.endpoint_info = 'https://portal.claveunica.gob.cl';
+
+  this.url_metrics = 'https://search-segpres55-f5lu3u6pudmv6roa4sflk6oafm.us-west-2.es.amazonaws.com/claveunica';
 
   this.URL = {
     activate: '/codes',
@@ -21,11 +23,9 @@ function Api($http, $q, $base64, $cacheFactory) {
     tasks: '/front/procedures',
     offices: '/front/places',
     faqs: '/front/faq-users',
-    metrics: '/front/institutions/metrics',
     request: '/front/institutions/form',
     credentials: '/front/institutions/form/download',
     charts: '/front/institutions/{institution}/charts/{id}',
-    // institution: '/accounts/institution/check',
     institution: '/accounts/check',
     citizendata: '/support/{number_run}',
     citizendataMethod: '/users/{number_run}/recovery/{method}'
@@ -33,12 +33,29 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   $http.setEndpoint(this.endpoint);
 
+  // agentes
+  this.deleteAgent = function (agent_run) {
+    return $http.delete(this.endpoint.concat("/support/agents/users")+'/'+agent_run).then(function (res) { 
+      return res.data.object;
+    });
+  };
+  this.sendNewAgent = function (agent_json) {
+    return $http.post(this.endpoint.concat("/support/agents/users"), agent_json).then(function (res) {
+      return res.data;
+    });
+  };
+  this.getAgents = function () {
+    return $http.get(this.endpoint.concat("/support/agents/users")).then(function (res) {
+      return res.data.object.agentsUsers;
+    });
+  }
+
   this.parseRutNumber = function (run) {
     return parseInt(run.split('-')[0].split('.').join(''));
   };
 
   this.getMetrics = function () {
-    return $http.get($http.url(this.URL.metrics)).then(function (res) {
+    return $http.get(this.url_metrics.concat("/metrics/1/_source")).then(function (res) {
       return res.data.object;
     });
   };
@@ -303,8 +320,7 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.isInstitution = function () {
-    return $http.get($http.url(this.URL.institution, { cache: true }))
-      .then(function (res) {
+    return $http.get(this.endpoint_info.concat("/accounts/info")).then(function (res) {
         return res.data;
       })
     ;

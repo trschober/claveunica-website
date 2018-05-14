@@ -39,3 +39,15 @@
   state=asdfgh
 </em>
 </code>
+
+<p><b>Ejemplo curl</b></p>
+<code>
+  curl -i 'https://accounts.claveunica.gob.cl/openid/token/' 
+  -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' 
+  --data 'client_id=CLIENT_ID&amp;
+  client_secret=CLIENT_SECRET&amp;
+  redirect_uri=URI_REDIRECT_ENCODEADA&amp;
+  grant_type=authorization_code&amp;
+  code=CODE&amp;
+  state=STATE'
+</code>

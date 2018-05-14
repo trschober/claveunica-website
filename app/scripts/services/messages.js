@@ -121,7 +121,15 @@ function Messages() {
       case 45:
         strResp = "El código de activación ha sido enviado.";
         break;
-        // # Errores
+      case 47:
+        strRest = "List user agent";
+        break;
+      case 48:
+        strRest = "Add user agent";
+        break;
+      case 49:
+        strRest = "Delete user agent";
+        break;
       case 50:
         strResp = "Usuario no existe (Activación - Obtencion de datos)";
         break;
@@ -147,6 +155,18 @@ function Messages() {
         strResp = "No se encontró información asociada al ciudadano.";
           strResp += "<br><br>";
           strResp += "Si nunca ha solicitado un código de activación, puede hacerlo en la <a target='_blank' href='https://claveunica.gob.cl/oficinas'>oficina</a> de Ips o Registro Civil más cercana.";
+        break;
+      case 71:
+        strResp = "El Run ya existe en su listado de Agentes";
+        break;
+      case 72:
+        strResp = "Institution not found";
+        break;
+      case 73:
+        strResp = "Agents not found to delete";
+        break;
+      case 74:
+        strResp = "El Run proporcionado no cuenta con ClaveÚnica";
         break;
       default:
         strResp = "Ha ocurrido un error. Por favor intente nuevamente";

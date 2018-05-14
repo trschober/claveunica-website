@@ -27,8 +27,8 @@ function MetricsController($scope, Api, $interval) {
 
     $scope.getMetrics();
 
-    // var intervalPromise = $interval(function () { $scope.getMetrics(); }, 30000);      
-    // $scope.$on('$destroy', function () { $interval.cancel(intervalPromise); });
+    var intervalPromise = $interval(function () { $scope.getMetrics(); }, 1000);      
+    $scope.$on('$destroy', function () { $interval.cancel(intervalPromise); });
 
 }
 

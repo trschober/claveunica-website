@@ -1,0 +1,98 @@
+<script>
+function showDiv(div_id) {
+	if ( $("#"+div_id).css('display') == 'none'){
+		document.getElementById(div_id).style.display = "block";
+	}else{
+		document.getElementById("form_new").reset();
+   		document.getElementById(div_id).style.display = "none";
+	}
+}
+</script>
+
+<section id="how-it-works">
+  <div class="container">
+  	<div class="" style="padding-top: 10px">
+    	<a class="" href="/institucional/soporte">&lt; volver a Soporte</a>
+    </div>
+    <h1 style="margin-bottom: 0px !important">Agentes Soporte</h1> 
+    <div class="row">
+      <div class="col-md-12">
+        <button onclick="showDiv('form_new_agent')" class="btn btn-primary" style="font-size: 13px !important">Nuevo</button>
+        <div id="form_new_agent" style="display: none">
+			<form class="form-horizontal" id="form_new" ng-submit="saveAgent()">				
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="agent_run">RUN...</label>
+				    <div class="col-sm-10">
+				    	<input ng-model="agent_run" name="agent_run" required class="form-control ng-pristine ng-isolate-scope ng-empty ng-invalid ng-invalid-validate-rut ng-invalid-required ng-touched" placeholder="Run del Ciudadano (Ej. 11222333-4)" validate-rut="" required="">
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="agent_name">Nombre</label>
+				    <div class="col-sm-10">
+				    	<input type="text" class="form-control ng-invalid-required" id="agent_name" ng-model="agent_name" name="agent_name" placeholder="" required="">
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="agent_lastname">Apellido</label>
+				    <div class="col-sm-10">
+				    	<input type="text" class="form-control ng-invalid-required" id="agent_lastname" ng-model="agent_lastname" name="agent_lastname" placeholder="" required="">
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="agent_email">Email</label>
+				    <div class="col-sm-10">
+				    	<input type="text" class="form-control ng-invalid-required" id="agent_email" ng-model="agent_email" name="agent_email" placeholder="" required="">
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="agent_phonenumber">Teléfono</label>
+				    <div class="col-sm-10">
+				    	<input type="text" class="form-control ng-invalid-required" id="agent_phonenumber" ng-model="agent_phonenumber" name="agent_phonenumber" placeholder="" required="">
+				    	<div>Ej. 912345678</div>
+				    </div>
+				</div>
+
+				<div class="form-group">        
+				   	<div class="col-sm-offset-2 col-sm-10 text-right">
+				    	<button ng-click="cancelNewAgent()" type="button" class="btn btn-danger" style="font-size: 13px !important">Cancelar</button>&nbsp;&nbsp;&nbsp;
+				    	<button type="submit" class="btn btn-primary" id="submit" ng-disabled="form.$invalid" style="font-size: 13px !important">Guardar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+        
+		<div ng-if='error_new' id="" class="alert alert-danger" role="alert" style="">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  <!-- <span class="sr-only">Error:({{result_new}})</span> -->
+		  <div>{{result_new}}</div>
+		</div>
+
+        <table class="table table-bordered" style="margin-top: 10px">
+        	<thead>
+        		<th>Run</th>
+        		<th>Nombre</th>
+        		<th>Email</th>
+        		<th>Teléfono</th>
+        		<th style="text-align: right">Acciones</th>
+        	</thead>
+        	<tbody>
+        		<tr dir-paginate="agent in agents | itemsPerPage: 10">
+	        		<td>{{ agent.RolUnico.numero }}-{{ agent.RolUnico.DV }}</td>
+	        		<td>{{ agent.name.nombres.join(" ") }}  {{ agent.name.apellidos.join(" ") }} </td>
+	        		<td>{{ agent.other_info.email }}</td>
+	        		<td ng-if="agent.other_info.phone">{{ agent.other_info.phone.code }} {{ agent.other_info.phone.number }}</td>
+	        		<td ng-if="!agent.other_info.phone">-</td>
+	        		<td style="text-align: right">
+	        			<button class="btn btn-danger" style="font-size: 13px; padding: 5px 20px;" confirmed-click="deleteAgent(agent.RolUnico.numero)" ng-confirm-click="¿Estás seguro de eliminar el Agente?">Eliminar</button>
+	        		</td>
+	        	</tr>
+        	</tbody>
+        </table>
+
+        <nav class="text-center">
+          <dir-pagination-controls></dir-pagination-controls>
+        </nav>
+   	  </div>
+    </div>
+  </div>
+</section>

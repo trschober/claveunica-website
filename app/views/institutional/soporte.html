@@ -1,75 +1,78 @@
 <section id="how-it-works">
   <div class="container">
+    <div class="pull-right">
+      <a ng-if="isAdmin === true" ui-sref="institutional.agentes" class="btn btn-primary">Mantenedor Agentes</a>
+    </div>
     <h1>Soporte Ciudadanos</h1> 
     <div class="row">
       <div class="col-md-12">
         <form ng-submit="submit()" ng-controller="SoporteController" class="clearfix">
-	        <div class="input-group" show-errors>
-		      <input name="run" ng-model="run" ng-model="request.institution" required class="form-control ng-pristine ng-isolate-scope ng-empty ng-invalid ng-invalid-validate-rut ng-invalid-required ng-touched" placeholder="Run del Ciudadano (Ej. 11222333-4)" validate-rut="" required="">
-		      <span class="input-group-btn">
-		        <button promise-btn class="btn btn-primary" type="submit" id="submit" ng-disabled="form.$invalid" style="font-size: 12px !important;">
-		        	<i class="glyphicon glyphicon-search"></i>
-		        </button>
-		      </span>
-		    </div>
-		    <p ng-messages="form.run.$error" class="text-danger" ng-if="form.run.$touched">
-				<span ng-message="required">Este campo es obligatorio</span>
-			</p>
-		
+          <div class="input-group" show-errors>
+          <input name="run" ng-model="run" ng-model="request.institution" required class="form-control ng-pristine ng-isolate-scope ng-empty ng-invalid ng-invalid-validate-rut ng-invalid-required ng-touched" placeholder="Run del Ciudadano (Ej. 11222333-4)" validate-rut="" required="">
+          <span class="input-group-btn">
+            <button promise-btn class="btn btn-primary" type="submit" id="submit" ng-disabled="form.$invalid" style="font-size: 12px !important;">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </span>
+        </div>
+        <p ng-messages="form.run.$error" class="text-danger" ng-if="form.run.$touched">
+        <span ng-message="required">Este campo es obligatorio</span>
+      </p>
+    
 
-		<div ng-show="error != ''" id="error-usuario-no-existe" class="alert alert-danger" role="alert" style="margin-top: 15px !important;">
-		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		  <span class="sr-only">Error:</span>
-		  <p ng-bind-html="resutl"></p>
-		</div>
+    <div ng-show="error != ''" id="error-usuario-no-existe" class="alert alert-danger" role="alert" style="margin-top: 15px !important;">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      <p ng-bind-html="error"></p>
+    </div>
 
-		<div class="jumbotron" ng-show="result == 'resultado'">
-			<h1><b ng-bind="ciudadano_nombre"></b></h1>
-			<p>
-				<p>RUN: <b ng-bind="ciudadano_run"></b></p>
+    <div class="jumbotron" ng-show="result == 'resultado'">
+      <h1><b ng-bind="ciudadano_nombre"></b></h1>
+      <p>
+        <p>RUN: <b ng-bind="ciudadano_run"></b></p>
 
-				<hr>
-				<p><b>Datos de Contacto</b></p>
-				<p>Teléfono: <b ng-bind="ciudadano_telefono"></b></p>
-				<p>Email: <b ng-bind="ciudadano_email"></b></p>
-				
-				<hr>
-				<!-- <p><b>Enrolamiento y Activación</b></p> -->
-				<p><b>Ciudadano <span ng-bind="ciudadano_estado"></span></b></p>
-				<p ng-if="ciudadano_enrolamiento">Fecha / Hora Último Enrolamiento: <b ng-bind="ciudadano_enrolamiento"></b></p>
-				<p ng-if="ciudadano_activacion">Fecha / Hora Última Activación: <b ng-bind="ciudadano_activacion"></b></p>
-				
-				<hr>
-				<p><b>Estado</b></p>
-				<p>Bloqueado: <b ng-bind="ciudadano_bloqueado"></b></p>
-				<p>Intentos Fallidos: <b ng-bind="ciudadano_intentos"></b></p>
-				<p>Fecha / Hora Intento Fallido: <b ng-bind="ciudadano_intentos_fecha"></b></p>
-			</p>
-			<hr>
-			<div class="clearfix">
-				<div class="pull-left">
-					<a href="#" class="btn btn-info btn-lg" style="margin-top: 31px" ng-click="limpiarForm()" role="button">Limpiar</a>
-				</div>
-				<div class="pull-right">
-					<label ng-if="ciudadano_email" class="radio-inline"><input type="radio" ng-model="request.optradio" ng-value="1">EMAIL</label>
-					<label ng-if="ciudadano_telefono" class="radio-inline"><input type="radio" ng-model="request.optradio" ng-value="2">SMS</label>
-					<br>
-					<button ng-disabled="!request.optradio" ng-click="sendRecoveryBySupport(request.optradio)" class="btn btn-primary btn-lg" style="margin-top: 10px" role="button">Enviar nuevo código de activación</button>
-				</div>
-			</div> 
-		</div>
+        <hr>
+        <p><b>Datos de Contacto</b></p>
+        <p>Teléfono: <b ng-bind="ciudadano_telefono"></b></p>
+        <p>Email: <b ng-bind="ciudadano_email"></b></p>
+        
+        <hr>
+        <!-- <p><b>Enrolamiento y Activación</b></p> -->
+        <p><b>Ciudadano <span ng-bind="ciudadano_estado"></span></b></p>
+        <p ng-if="ciudadano_enrolamiento">Fecha / Hora Último Enrolamiento: <b ng-bind="ciudadano_enrolamiento"></b></p>
+        <p ng-if="ciudadano_activacion">Fecha / Hora Última Activación: <b ng-bind="ciudadano_activacion"></b></p>
+        
+        <hr>
+        <p><b>Estado</b></p>
+        <p>Bloqueado: <b ng-bind="ciudadano_bloqueado"></b></p>
+        <p>Intentos Fallidos: <b ng-bind="ciudadano_intentos"></b></p>
+        <p>Fecha / Hora Intento Fallido: <b ng-bind="ciudadano_intentos_fecha"></b></p>
+      </p>
+      <hr>
+      <div class="clearfix">
+        <div class="pull-left">
+          <a href="#" class="btn btn-info btn-lg" style="margin-top: 31px" ng-click="limpiarForm()" role="button">Limpiar</a>
+        </div>
+        <div class="pull-right">
+          <label ng-if="ciudadano_email" class="radio-inline"><input type="radio" ng-model="request.optradio" ng-value="1">EMAIL</label>
+          <label ng-if="ciudadano_telefono" class="radio-inline"><input type="radio" ng-model="request.optradio" ng-value="2">SMS</label>
+          <br>
+          <button ng-disabled="!request.optradio" ng-click="sendRecoveryBySupport(request.optradio)" class="btn btn-primary btn-lg" style="margin-top: 10px" role="button">Enviar nuevo código de activación</button>
+        </div>
+      </div> 
+    </div>
 
-		<div ng-show="message" class="alert alert-info" role="alert" style="margin-top: 15px !important;">
-		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		  <span class="sr-only">Información:</span>
-		  <p ng-bind-html="message"></p>
-		</div>
+    <div ng-show="message" class="alert alert-info" role="alert" style="margin-top: 15px !important;">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Información:</span>
+      <p ng-bind-html="message"></p>
+    </div>
 
-		<div class="jumbotron" style="text-align: right; text-decoration: underline;">
-			<a href="https://soporte.digital.gob.cl/open.php?topicId=20" target="_blank">CONTACTAR ADMINISTRADOR DE LA PLATAFORMA</a>
-		</div>
+    <div class="jumbotron" style="text-align: right; text-decoration: underline;">
+      <a href="https://soporte.digital.gob.cl/open.php?topicId=20" target="_blank">CONTACTAR ADMINISTRADOR DE LA PLATAFORMA</a>
+    </div>
 </form>
-   	  </div>
+      </div>
     </div>
   </div>
 </section>
