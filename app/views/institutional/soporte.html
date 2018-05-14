@@ -6,7 +6,7 @@
     <h1>Soporte Ciudadanos</h1> 
     <div class="row">
       <div class="col-md-12">
-        <form ng-submit="submit()" ng-controller="SoporteController" class="clearfix">
+        <form id="form_search_citizen" ng-submit="submit()" ng-controller="SoporteController" class="clearfix">
           <div class="input-group" show-errors>
           <input name="run" ng-model="run" ng-model="request.institution" required class="form-control ng-pristine ng-isolate-scope ng-empty ng-invalid ng-invalid-validate-rut ng-invalid-required ng-touched" placeholder="Run del Ciudadano (Ej. 11222333-4)" validate-rut="" required="">
           <span class="input-group-btn">
@@ -34,7 +34,13 @@
         <hr>
         <p><b>Datos de Contacto</b></p>
         <p>Teléfono: <b ng-bind="ciudadano_telefono"></b></p>
-        <p>Email: <b ng-bind="ciudadano_email"></b></p>
+        <p>Email: <b ng-bind="ciudadano_email"></b>
+          <input type="button" class="btn-warning" id="btn_editar_email" value="editar" ng-click="showEditEmail()">
+          <br>
+          <input type="text" class="form-control" ng-model="email_new" name="email_new" id="email_new" style="display: none; margin-bottom: 5px; width: 350px !important;">
+          <input type="button" class="btn-primary" id="btn_cancelar_guardar_email" value="Cancelar" ng-click="cancelNewEmail()" style="display: none">
+          <input type="button" class="btn-danger" id="btn_guardar_email" value="Guardar" ng-click="saveNewEmail(ciudadano_run)" style="display: none">
+        </p>
         
         <hr>
         <!-- <p><b>Enrolamiento y Activación</b></p> -->

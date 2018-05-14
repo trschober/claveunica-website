@@ -34,6 +34,11 @@ function Api($http, $q, $base64, $cacheFactory) {
   $http.setEndpoint(this.endpoint);
 
   // agentes
+  this.sendUpdateEmail = function (run, new_email){
+    return $http.put(this.endpoint.concat("/support/"+this.parseRutNumber(run)+"/email"), { email: new_email }).then(function (res) {
+      return res.data;
+    });
+  }
   this.deleteAgent = function (agent_run) {
     return $http.delete(this.endpoint.concat("/support/agents/users")+'/'+agent_run).then(function (res) { 
       return res.data.object;
