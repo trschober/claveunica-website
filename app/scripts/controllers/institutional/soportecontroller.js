@@ -91,7 +91,9 @@ app.controller('SoporteController', function ($scope, Api, Messages) {
             });
             $scope.error_new = "";
             $scope.result_new = "";
-            showDiv('form_new_agent');
+            // showDiv('form_new_agent');
+            document.getElementById("form_new").reset();
+            document.getElementById(div_id).style.display = "none";
         });
     }
 

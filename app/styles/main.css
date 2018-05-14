@@ -734,3 +734,9 @@ footer.footer-gobcl .top .listas .lista li {list-style: none;}
   .barra-superior #institutional{ width: 65%; float: left; padding: 0; }
   .barra-superior a{border: 0}
 }
+
+#form_new_agent {
+  border: 1px solid #1977b9;
+  padding-right: 10px;
+  padding-top: 10px;
+}

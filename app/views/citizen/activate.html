@@ -9,7 +9,13 @@
 
     <div class="row">
 
-      <div class="col-md-6">
+      <div class="col-md-6" ng-if="logged === true">
+        <form name="form" class="caja" novalidate style="text-align: center;">
+          <h4>Ya estás autenticado</h4>
+          <p>Para ingresar un código y activar una cuenta de Claveúnica primero debes <b>Cerrar sesión</b>.</p>
+        </form>
+      </div>
+      <div class="col-md-6" ng-if="logged === false">
         <form name="form" class="caja" novalidate>
           <h4>Ingresa tu RUN y código de activación</h4>
 
@@ -23,7 +29,7 @@
           </div>
 
           <div class="form-group" show-errors>
-            <input ng-model="user.code_activation" name="code" class="form-control" placeholder="Código de activación" required>
+            <input ng-model="user.code_activation" name="code" id="activation_code" class="form-control" placeholder="Código de activación" required>
             <p ng-messages="form.code.$error" ng-if="form.code.$touched" class="text-danger">
               <span ng-message="required">Debes completar esta información</span>
             </p>

@@ -1,6 +1,6 @@
 'use strict';
 
-function ActivateminiController($scope, $state, Api) {
+function ActivateminiController($scope, $state, Api, session) {
     'ngInject';
 
     $scope.user = {};
