@@ -121,7 +121,12 @@ app.controller('SoporteController', function ($scope, Api, Messages) {
         var new_email = $scope.email_new;
         Api.sendUpdateEmail(run, new_email).then(function (data) {
             //volver a buscar
-            if( data.status == 'OK'){
+            console.log(data);
+            if( data.code == 75 ){
+                alert("El email no puede modificarse más de una vez en 24 horas");
+            }else if( data.code == 76 ){
+                alert("Modificación no permitida");
+            }else if( data.code == 55){
                 alert("El email fue actualizado exitosamente");
                 $("#email_new").hide();
                 $("#btn_cancelar_guardar_email").hide();

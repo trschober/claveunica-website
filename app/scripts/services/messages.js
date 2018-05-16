@@ -145,6 +145,9 @@ function Messages() {
       case 54:
         strResp = "Usuario no existe (Userinfo - Consultar usuario info)";
         break;
+      case 55:
+        strResp = "Email was successful edit";
+        break;
       case 56:
         strResp = "Usuario no existe (Recovery)";
         break;
@@ -167,6 +170,12 @@ function Messages() {
         break;
       case 74:
         strResp = "El Run proporcionado no cuenta con ClaveÚnica";
+        break;
+      case 75:
+        strResp = "Email has alredy edit";
+        break;
+      case 76:
+        strResp = "Wrong edit";
         break;
       default:
         strResp = "Ha ocurrido un error. Por favor intente nuevamente";
