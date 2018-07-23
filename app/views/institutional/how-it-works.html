@@ -11,9 +11,9 @@
         <h3>Authorization Code Flow o Flujo de código de autorización</h3>
         <p>Para este mecanismo de autenticación, el servicio deberá obtener con ClaveÚnica un código de acceso, posterior a la identificación del usuario en Registro Civil, que puede ser cambiado por un Token de acceso.</p>
         <p>Este token permitirá obtener la autorización para acceder al usuario a un recurso protegido, y a su vez, que dicha aplicación sea autenticada en ClaveÚnica, por lo que el Token de acceso es cambiado por un Token de autorización lo que se traduce que tanto el usuario como tu servicio fueron autenticados y autorizados por el servicio de ClaveÚnica.</p>
-        <p>Este token permite mantener la sesión del usuario y de la aplicación, ambos identificado por el servicio de ClaveÚnica.</p>
+        <p>Este token permite mantener la sesión del usuario y de la aplicación, ambos identificados por el servicio de ClaveÚnica.</p>
         <p>Sin embargo, el Token de autorización tiene un tiempo de expiración, que puede ser extendido siempre y cuando la aplicación envíe solicitudes de refresco (sin la necesidad de volver hacer el proceso de autenticación)</p>
-        <p>El siguiente diagrama de secuencia se resume el proceso de autenticacion y autorizacion de ClaveÚnica</p>
+        <p>El siguiente diagrama de secuencia se resume el proceso de autenticación y autorización de ClaveÚnica</p>
         <img class="img-responsive center-block" src="/images/flujo-oidc.png" alt="Diagrama de secuencia" />
       </div>
       <div class="col-md-4 hidden-xs hidden-sm">

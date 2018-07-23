@@ -35,7 +35,7 @@
         <p><b>Datos de Contacto</b></p>
         <p>Teléfono: <b ng-bind="ciudadano_telefono"></b></p>
         <p>Email: <b ng-bind="ciudadano_email"></b>
-          <input type="button" class="btn-warning" id="btn_editar_email" value="editar" ng-click="showEditEmail()">
+          <input ng-if="institucion != ''" type="button" class="btn-warning" id="btn_editar_email" value="editar" ng-click="showEditEmail()">
           <br>
           <input type="text" class="form-control" ng-model="email_new" name="email_new" id="email_new" style="display: none; margin-bottom: 5px; width: 350px !important;">
           <input type="button" class="btn-primary" id="btn_cancelar_guardar_email" value="Cancelar" ng-click="cancelNewEmail()" style="display: none">
@@ -75,7 +75,7 @@
     </div>
 
     <div class="jumbotron" style="text-align: right; text-decoration: underline;">
-      <a href="https://soporte.digital.gob.cl/open.php?topicId=20" target="_blank">CONTACTAR ADMINISTRADOR DE LA PLATAFORMA</a>
+      <a href="http://claveunica.soporte.digital.gob.cl/" target="_blank">CONTACTAR ADMINISTRADOR DE LA PLATAFORMA</a>
     </div>
 </form>
       </div>

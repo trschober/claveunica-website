@@ -100,17 +100,17 @@
                   ng-model="$ctrl.code">
             </span>
             </div>
-
             <div class="col-sm-8 col-md-8 col-lg-8">
               <input ng-model="$ctrl.phone"
                  ng-pattern="/^[0-9]{4,14}$/"
                  type="tel"
                  name="tel"
+                 ng-minlength="9" ng-maxlength="9"
                  class="form-control"
                  placeholder="Ingresa tu número celular">
                  <small>&nbsp;Ejemplo <b>912345678</b></small>
             </div>
-          </div>
+          </div>        
         </div>
 
         <div class="input-group" show-errors>
@@ -137,7 +137,7 @@
         </div>
 
         <p ng-messages="form.tel_confirm.$error" class="text-danger" ng-if="!form.tel_confirm.$valid">
-          <span ng-message="compareTo">Los teléfonos no coinciden</span>
+          <span ng-message="compareTo">Los números celulares deben ser igual y tener 9 digitos</span>
         </p>
 
         <p ng-messages="form.confirm_code.$error" class="text-danger" ng-if="!form.confirm_code.$valid">

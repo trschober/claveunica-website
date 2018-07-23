@@ -9,7 +9,7 @@ function Api($http, $q, $base64, $cacheFactory) {
 
   this.endpoint_info = 'https://portal.claveunica.gob.cl';
 
-  this.url_metrics = 'https://search-segpres55-f5lu3u6pudmv6roa4sflk6oafm.us-west-2.es.amazonaws.com/claveunica';
+  this.url_metrics = 'https://portal.claveunica.gob.cl/api/v1/front/institutions';
 
   this.URL = {
     activate: '/codes',
@@ -37,6 +37,8 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.sendUpdateEmail = function (run, new_email){
     return $http.put(this.endpoint.concat("/support/"+this.parseRutNumber(run)+"/email"), { suggestedEmail: new_email }).then(function (res) {
       return res.data;
+    }, function errorCallback(err){
+      return err.data;
     });
   }
   this.deleteAgent = function (agent_run) {
@@ -47,6 +49,8 @@ function Api($http, $q, $base64, $cacheFactory) {
   this.sendNewAgent = function (agent_json) {
     return $http.post(this.endpoint.concat("/support/agents/users"), agent_json).then(function (res) {
       return res.data;
+    }, function errorCallback(err){
+      return err.data;
     });
   };
   this.getAgents = function () {
@@ -60,7 +64,7 @@ function Api($http, $q, $base64, $cacheFactory) {
   };
 
   this.getMetrics = function () {
-    return $http.get(this.url_metrics.concat("/metrics/1/_source")).then(function (res) {
+    return $http.get(this.url_metrics.concat("/metrics")).then(function (res) {
       return res.data.object;
     });
   };

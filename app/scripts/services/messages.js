@@ -80,7 +80,7 @@ function Messages() {
         strResp = "El Ciudadano necesita <a href='/activar'>activar su cuenta</a>";
         break;
       case 23:
-        strResp = "RUN invalido (Auth)";
+        strResp = "RUN invalido";
         break;
       case 25:
         strResp = "Codigo valido (Activación)";
@@ -160,7 +160,7 @@ function Messages() {
           strResp += "Si nunca ha solicitado un código de activación, puede hacerlo en la <a target='_blank' href='https://claveunica.gob.cl/oficinas'>oficina</a> de Ips o Registro Civil más cercana.";
         break;
       case 71:
-        strResp = "El Run ya existe en su listado de Agentes";
+        strResp = "El Run ya existe en su listado de Agentes o es corresponde a un Administrador";
         break;
       case 72:
         strResp = "Institution not found";
